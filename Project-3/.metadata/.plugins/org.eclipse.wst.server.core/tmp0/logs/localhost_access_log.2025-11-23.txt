@@ -1,0 +1,17 @@
+127.0.0.1 - - [23/Nov/2025:20:04:30 +0530] "GET / HTTP/1.1" 404 752
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:31 +0530] "GET /project_3/ HTTP/1.1" 200 663
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:31 +0530] "GET /project_3/img/custom.png HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:31 +0530] "GET /project_3/img/amit.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:32 +0530] "GET /favicon.ico HTTP/1.1" 404 763
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:42 +0530] "GET /project_3/WelcomeCtl HTTP/1.1" 200 3718
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:42 +0530] "GET /resources/demos/style.css HTTP/1.1" 404 785
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:43 +0530] "GET /project_3/img/WallpaperDog-988052.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:45 +0530] "GET /project_3/LoginCtl HTTP/1.1" 200 7171
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:45 +0530] "GET /project_3/img/loginhere.jpg HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:57 +0530] "POST /project_3/LoginCtl HTTP/1.1" 302 -
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:57 +0530] "GET /project_3/WelcomeCtl HTTP/1.1" 200 10404
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:04:57 +0530] "GET /resources/demos/style.css HTTP/1.1" 404 785
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:05:06 +0530] "GET /project_3/ctl/MarksheetMeritListCtl HTTP/1.1" 200 13916
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:05:06 +0530] "GET /project_3/js/jquery.min.js HTTP/1.1" 200 95935
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:05:06 +0530] "GET /project_3/js/CheckBox11.js HTTP/1.1" 200 612
+0:0:0:0:0:0:0:1 - - [23/Nov/2025:20:05:07 +0530] "GET /project_3/img/list2.jpg HTTP/1.1" 200 90846
