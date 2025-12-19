@@ -25,7 +25,7 @@
 
 <style type="text/css">
 .log1 {
-	padding-top: 5%;
+	padding-top: 8%;
 	/* Adds 5% space on the top of the element (ex: space above login form).*/
 }
 
@@ -55,10 +55,8 @@ i.css {
 	background-attachment: fixed;
 	background-size: cover;
 	padding-top: 75px;
-	/*background-position: center top;*/
 }
 </style>
-
 
 </head>
 <body class="p4">
@@ -70,8 +68,8 @@ i.css {
 		<main>
 		<form action="<%=ORSView.LOGIN_CTL%>" method="post">
 
+			<!-- Grid column -->
 			<div class="row log1">
-				<!-- Grid column -->
 				<div class="col-md-4 "></div>
 				<div class="col-md-4">
 					<div class="card input-group-addon grad	">

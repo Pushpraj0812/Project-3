@@ -14,7 +14,7 @@ import in.co.rays.project_3.util.ServletUtility;
 /**
  * welcome functionality controller.to show welcome page
  * 
- * @author Pushpraj Singh Kachhaway
+ * @author Pushpraj Singh Kachhaway 
  *
  */
 @WebServlet(name = "WelcomeCtl", urlPatterns = { "/WelcomeCtl" })
@@ -22,10 +22,6 @@ public class WelcomeCtl extends BaseCtl {
 
 	private static Logger log = Logger.getLogger(WelcomeCtl.class);
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

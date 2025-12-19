@@ -21,7 +21,7 @@
 <body >
 <div class="footer">
 <center>
-
+  <!-- &#copy => &#169 -->
 <h5>&#169; RAYS Technologies</h5></center>
 </div>
 </body>

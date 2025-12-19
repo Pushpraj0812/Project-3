@@ -99,12 +99,12 @@ public class UserModelTest {
 		UserDTO dto = new UserDTO();
 		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-		dto.setFirstName("Pushpraj");
+		dto.setFirstName("Pushpraj Singh Kachhaway Singh Kachhaway");
 		dto.setLastName("Kachhaway");
 		dto.setDob(sdf.parse("08-12-2001"));
 		dto.setConfirmPassword("0812");
 		dto.setPassword("0812");
-		dto.setLogin("pushpraj0812@gmail.com");
+		dto.setLogin("Pushpraj Singh Kachhaway Singh Kachhaway0812@gmail.com");
 		dto.setGender("male");
 
 		dto.setCreatedBy("admin");
@@ -154,7 +154,7 @@ public class UserModelTest {
 
 		UserDTO dto = new UserDTO();
 
-		dto.setLogin("pushpraj0812@gmail.com");
+		dto.setLogin("Pushpraj Singh Kachhaway Singh Kachhaway0812@gmail.com");
 		dto.setPassword("0812");
 		model.authenticate(dto.getLogin(), dto.getPassword());
 		if (dto != null) {

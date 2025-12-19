@@ -23,20 +23,18 @@ import in.co.rays.project_3.util.PropertyReader;
 import in.co.rays.project_3.util.ServletUtility;
 
 /**
- * User registration functionality Controller. Performs operation for User
- * 
- * @author Pushpraj Singh Kachhaway
+ * @author Pushpraj Singh Kachhaway 
  *
  */
 @WebServlet(urlPatterns = { "/UserRegistrationCtl" })
 public class UserRegistrationCtl extends BaseCtl {
-	
+
 	private static Logger log = Logger.getLogger(UserRegistrationCtl.class);
 
 	public static final String OP_SIGN_UP = "SignUp";
 
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("UserRegistrationCtl validate start");
 
 		boolean pass = true;
@@ -107,14 +105,14 @@ public class UserRegistrationCtl extends BaseCtl {
 			request.setAttribute("confirmPassword", "Confirm Password should be matched");
 			pass = false;
 		}
-		
+
 		log.debug("UserRegistrationCtl validate end");
 		return pass;
 	}
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
+
 		log.debug("UserRegistrationCtl populateDTO start");
 
 		UserDTO dto = new UserDTO();
@@ -134,13 +132,13 @@ public class UserRegistrationCtl extends BaseCtl {
 		dto.setConfirmPassword(DataUtility.getString(request.getParameter("confirmPassword")));
 
 		dto.setGender(DataUtility.getString(request.getParameter("gender")));
-		
+
 		dto.setMobileNo(DataUtility.getString(request.getParameter("mobileNo")));
 
 		dto.setDob(DataUtility.getDate(request.getParameter("dob")));
-		
+
 		populateBean(dto, request);
-		
+
 		log.debug("UserRegistrationCtl populateDTO end");
 
 		return dto;
@@ -148,14 +146,14 @@ public class UserRegistrationCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		ServletUtility.forward(getView(), request, response);
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("UserRegistrationCtl doPost start");
 
 		String op = request.getParameter("operation");
@@ -167,7 +165,7 @@ public class UserRegistrationCtl extends BaseCtl {
 		if (OP_SIGN_UP.equalsIgnoreCase(op)) {
 			UserDTO dto = (UserDTO) populateDTO(request);
 			try {
-				
+
 				long pk = userModel.registerUser(dto);
 				ServletUtility.setDto(dto, request);
 				ServletUtility.setSuccessMessage("Registration successfully", request);

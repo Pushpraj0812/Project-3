@@ -25,9 +25,8 @@ import in.co.rays.project_3.util.PropertyReader;
 import in.co.rays.project_3.util.ServletUtility;
 
 /**
- * user functionality controller.to perform add,delete and update operation
- * 
- * @author Pushpraj Singh Kachhaway
+ * User functionality controller.to perform add,delete and update operation
+ * @author Pushpraj Singh Kachhaway 
  *
  */
 @WebServlet(urlPatterns = { "/ctl/UserCtl" })
@@ -36,7 +35,7 @@ public class UserCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(UserCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-		
+
 		log.debug("UserCtl preload start");
 
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
@@ -58,7 +57,7 @@ public class UserCtl extends BaseCtl {
 	}
 
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("UserCtl validate start");
 
 		boolean pass = true;
@@ -139,7 +138,7 @@ public class UserCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
+
 		log.debug("UserCtl populateDTO start");
 
 		UserDTO dto = new UserDTO();

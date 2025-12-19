@@ -65,9 +65,9 @@ i.css {
 		<main>
 		<form action="<%=ORSView.USER_REGISTRATION_CTL%>" method="post">
 
+            <!-- Grid column -->
 			<div class="row pt-3">
-				<!-- Grid column -->
-				<div class="col-md-4 mb-4"></div> <!-- grid column = 4 -->
+				<div class="col-md-4 mb-4"></div> 
 				<div class="col-md-4 mb-4">
 					<div class="card input-group-addon">
 						<div class="card-body">

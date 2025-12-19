@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">  <!-- iski help se website responsive bani hai -->
 <title>User List</title>
 <script src="<%=ORSView.APP_CONTEXT%>/js/jquery.min.js"></script>
 <script type="text/javascript"
@@ -105,8 +105,8 @@
 
 			<div class="row"> <!-- A row groups columns so they align properly. -->
 
-				<div class="col-sm-2"></div> <!-- This is an empty column taking up 2 grid units. -->
-				<div class="col-sm-2"> <!-- This column contains your text input.  -->
+				<div class="col-sm-2"></div> 
+				<div class="col-sm-2"> 
 					<input type="text" name="firstName" placeholder="Enter FirstName"
 						class="form-control"
 						value="<%=ServletUtility.getParameter("firstName", request)%>">
