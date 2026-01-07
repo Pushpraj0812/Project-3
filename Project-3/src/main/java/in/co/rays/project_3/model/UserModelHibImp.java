@@ -32,8 +32,6 @@ public class UserModelHibImp implements UserModelInt {
 
 	public long add(UserDTO dto) throws ApplicationException, DuplicateRecordException {
 
-		/* log.debug("usermodel hib start"); */
-
 		UserDTO existDto = null;
 		existDto = findByLogin(dto.getLogin());
 		if (existDto != null) {
@@ -58,7 +56,6 @@ public class UserModelHibImp implements UserModelInt {
 		} finally {
 			session.close();
 		}
-		/* log.debug("Model add End"); */
 		return dto.getId();
 
 	}

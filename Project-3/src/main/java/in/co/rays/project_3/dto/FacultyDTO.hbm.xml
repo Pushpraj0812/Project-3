@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 10 Jan, 2021 09:00:16 AM by Hibernate Tools 3.5.0.Final -->
+<!-- Generated 20 Dec, 2025 09:00:16 AM by Hibernate Tools 3.5.0.Final -->
 <hibernate-mapping package="in.co.rays.project_3.dto">
 	<class name="FacultyDTO" table="ST_FACULTY">
 		<id name="id" type="java.lang.Long">

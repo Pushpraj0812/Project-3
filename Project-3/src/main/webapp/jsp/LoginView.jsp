@@ -183,10 +183,7 @@ i.css {
 
 		</form>
 		</main>
-
-
 	</div>
-
 </body>
 <%@include file="FooterView.jsp"%>
 </html>

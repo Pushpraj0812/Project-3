@@ -24,7 +24,7 @@ import in.co.rays.project_3.util.HibDataSource;
 public class MarksheetModelHibImp implements MarksheetModelInt {
 
 	public long add(MarksheetDTO dto) throws ApplicationException, DuplicateRecordException {
-		// TODO Auto-generated method stub
+		
 		Session session = HibDataSource.getSession();
 		Transaction tx = null;
 
@@ -59,7 +59,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public void delete(MarksheetDTO dto) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		Session session = null;
 		Transaction tx = null;
 		MarksheetDTO dtoExist = fingByPK(dto.getId());
@@ -85,7 +85,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public void update(MarksheetDTO dto) throws ApplicationException, DuplicateRecordException {
-		// TODO Auto-generated method stub
+		
 		Session session = null;
 		Transaction tx = null;
 
@@ -123,12 +123,12 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public List list() throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		return list(0, 0);
 	}
 
 	public List list(int pageNo, int pageSize) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		Session session = null;
 		List list = null;
 		try {
@@ -153,12 +153,12 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public List search(MarksheetDTO dto) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		return search(dto, 0, 0);
 	}
 
 	public List search(MarksheetDTO dto, int pageNo, int pageSize) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		Session session = null;
 		List list = null;
 		try {
@@ -198,7 +198,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public MarksheetDTO fingByPK(long pk) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		Session session = null;
 		MarksheetDTO dto = null;
 		try {
@@ -216,7 +216,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public MarksheetDTO findByRollNo(String rollNo) throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		Session session = null;
 		MarksheetDTO dto = null;
 		try {
@@ -264,5 +264,4 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 
 		return list;
 	}
-
 }

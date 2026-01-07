@@ -49,7 +49,7 @@
 	%>
 	<div class="header">
 		<nav class="navbar navbar-expand-lg fixed-top aj"> <a
-			class="navbar-brand" href="<%=ORSView.WELCOME_CTL%>"><img
+			class="navbar-brand" href="<%=ORSView.WELCOME_CTL%>"><img  
 			src="<%=ORSView.APP_CONTEXT%>/img/custom.png" width="190px"
 			height="50px"></a>
 		<button class="navbar-toggler " type="button" data-toggle="collapse"   

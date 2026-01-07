@@ -168,7 +168,7 @@
 							<td class="text"><%=rbean.getName()%></td>
 							<td class="text"><%=DataUtility.getDateString(dto.getDob())%></td>
 							<td class="text"><a href="UserCtl?id=<%=dto.getId()%>"
-								<%if (dto.getRoleId() == RoleDTO.ADMIN) {%>
+								<%if (userDto.getId()== dto.getId() || dto.getRoleId() == RoleDTO.ADMIN) {%>
 								onclick="return false;" <%}%>>Edit</a></td>
 						</tr>
 					</tbody>
@@ -183,9 +183,11 @@
 						class="btn btn-warning btn-md" style="font-size: 17px"
 						value="<%=UserListCtl.OP_PREVIOUS%>"
 						<%=pageNo > 1 ? "" : "disabled"%>></td>
+						
 					<td><input type="submit" name="operation"
 						class="btn btn-primary btn-md" style="font-size: 17px"
 						value="<%=UserListCtl.OP_NEW%>"></td>
+						
 					<td><input type="submit" name="operation"
 						class="btn btn-danger btn-md" style="font-size: 17px"
 						value="<%=UserListCtl.OP_DELETE%>"></td>
