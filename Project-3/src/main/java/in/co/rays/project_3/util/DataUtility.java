@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Data Uility class to formate data
+ * Data Uility class to format data
  * 
  * @author Pushpraj Singh Kachhaway
  *

@@ -3,7 +3,9 @@ package in.co.rays.project_3.util;
 import java.util.HashMap;
 
 /**
- * EmailBuilder is used to build the email message
+ * Utility class to build application email messages for different scenarios
+ * like user registration, password recovery, and password change.
+ * 
  * @author Pushpraj Singh Kachhaway
  *
  */

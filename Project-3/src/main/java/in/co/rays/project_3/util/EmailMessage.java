@@ -2,7 +2,14 @@ package in.co.rays.project_3.util;
 
 
 /**
- * EmailBuilder is used to contain the configuration or getter setter
+ * Represents an email message with all standard fields such as to, from, cc,
+ * bcc, subject, message content, and message type.
+ * 
+ * Provides constants for message types: HTML or plain text.
+ * 
+ * Usage: This class can be used in combination with EmailUtility to send
+ * emails.
+ * 
  * @author Pushpraj Singh Kachhaway
  *
  */
