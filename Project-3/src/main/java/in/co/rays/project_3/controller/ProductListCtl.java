@@ -26,8 +26,8 @@ public class ProductListCtl extends BaseCtl {
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
-		log.debug("ProductListCtl populateDTO start");
+
+		log.debug("CarListCtl populateDTO start");
 
 		ProductDTO dto = new ProductDTO();
 
@@ -37,8 +37,8 @@ public class ProductListCtl extends BaseCtl {
 		dto.setProductCategory(request.getParameter("productCategory"));
 
 		populateBean(dto, request);
-		
-		log.debug("ProductListCtl populateDTO end");
+
+		log.debug("CarListCtl populateDTO end");
 		return dto;
 	}
 
@@ -48,8 +48,8 @@ public class ProductListCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("ProductListCtl doGet Start");
-		
+		log.debug("CarListCtl doGet Start");
+
 		List list;
 		List next;
 
@@ -86,7 +86,7 @@ public class ProductListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.debug("ProductListCtl doPOst End");
+		log.debug("CarListCtl doPOst End");
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class ProductListCtl extends BaseCtl {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("ProductListCtl doPost Start");
+		log.debug("CarListCtl doPost Start");
 
 		List list = null;
 		List next = null;
@@ -189,7 +189,7 @@ public class ProductListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.debug("ProductListCtl doGet End");
+		log.debug("CarListCtl doGet End");
 	}
 
 	@Override

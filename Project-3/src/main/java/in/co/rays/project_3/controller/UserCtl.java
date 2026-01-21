@@ -68,7 +68,6 @@ public class UserCtl extends BaseCtl {
 		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
 			request.setAttribute("firstName", "please enter correct Name");
 			pass = false;
-
 		}
 		if (DataValidator.isNull(request.getParameter("lastName"))) {
 			request.setAttribute("lastName", PropertyReader.getValue("error.require", "last Name"));
@@ -76,7 +75,6 @@ public class UserCtl extends BaseCtl {
 		} else if (!DataValidator.isName(request.getParameter("firstName"))) {
 			request.setAttribute("lastName", "please enter correct Name");
 			pass = false;
-
 		}
 		if (DataValidator.isNull(request.getParameter("password"))) {
 			request.setAttribute("password", PropertyReader.getValue("error.require", "password"));
@@ -172,8 +170,6 @@ public class UserCtl extends BaseCtl {
 			throws IOException, ServletException {
 
 		log.debug("UserCtl doGet Started");
-
-		String op = DataUtility.getString(request.getParameter("operation"));
 
 		// get model
 		UserModelInt model = ModelFactory.getInstance().getUserModel();

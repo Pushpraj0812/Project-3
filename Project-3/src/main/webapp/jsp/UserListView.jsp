@@ -107,7 +107,7 @@
 
 				<div class="col-sm-2"></div> 
 				<div class="col-sm-2"> 
-					<input type="text" name="firstName" placeholder="Enter FirstName"
+					<input type="text" name="firstName" placeholder="Enter First Name"
 						class="form-control"
 						value="<%=ServletUtility.getParameter("firstName", request)%>">
 				</div>
@@ -137,7 +137,7 @@
 						<tr style="background-color: #8C8C8C;">
 
 							<th width="10%"><input type="checkbox" id="select_all"
-								name="Select" class="text"> Select All</th>
+								name="Select" class="text"> Select All</th>   <!-- class = text nhi bolna hai -->
 							<th width="5%" class="text">S.NO</th>
 							<th width="15%" class="text">FirstName</th>
 							<th width="15%" class="text">LastName</th>

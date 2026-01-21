@@ -58,7 +58,7 @@ i.css {
 							<%
 								long id = DataUtility.getLong(request.getParameter("id"));
 
-								if (dto.getFirstName() != null) {
+								if (dto.getFirstName() != null && dto.getId()>0 ) {
 							%>
 							<h3 class="text-center default-text text-primary">Update
 								User</h3>

@@ -27,23 +27,6 @@ public class HTMLUtility {
 	 * @param map
 	 * @return
 	 */
-
-	/*
-	 * public static String getList(String name, String selectedVal, HashMap<String,
-	 * String> map) {
-	 * 
-	 * StringBuffer sb = new StringBuffer( "<select class='form-control' name='" +
-	 * name + "'>");
-	 * 
-	 * 
-	 * Set<String> keys = map.keySet(); String val = null; boolean select =true;
-	 * 
-	 * if(select){ sb.append("<option selected-value=''---->"); } for (String key :
-	 * keys) { val = map.get(key); if (key.trim().equals(selectedVal)) {
-	 * sb.append("<option selected value='" + key + "'>" + val + "</option>"); }
-	 * else { sb.append("<option value='" + key + "'>" + val + "</option>"); } }
-	 * sb.append("</select>"); return sb.toString(); }
-	 */
 	public static String getList(String name, String selectedVal, HashMap<String, String> map) {
 
 		StringBuffer sb = new StringBuffer("<select class='form-control' name='" + name + "'>");
@@ -79,26 +62,6 @@ public class HTMLUtility {
 	 * @param list
 	 * @return
 	 */
-	/*
-	 * public static String getList(String name, String selectedVal, List list) {
-	 * 
-	 * Collections.sort(list);
-	 * 
-	 * List<DropDownListBean> dd = (List<DropDownListBean>) list;
-	 * 
-	 * StringBuffer sb = new StringBuffer( "<select class='form-control' name='" +
-	 * name + "'>");
-	 * 
-	 * String key = null; String val = null;
-	 * 
-	 * for (DropDownListBean obj : dd) { key = obj.getKey(); val = obj.getValue();
-	 * boolean select = true; if(select){
-	 * sb.append("<option selected-value=''---->"); } if
-	 * (key.trim().equals(selectedVal)) { sb.append("<option selected value='" + key
-	 * + "'>" + val + "</option>"); } else { sb.append("<option value='" + key +
-	 * "'>" + val + "</option>"); } } sb.append("</select>"); return sb.toString();
-	 * }
-	 */
 	public static String getList(String name, String selectedVal, List list) {
 
 		Collections.sort(list);
@@ -110,14 +73,11 @@ public class HTMLUtility {
 		if (select) {
 
 			sb.append(
-					"<option class='dropdown-item' style='border: 2px solid #8080803b;' selected value=''>------Select a "
-							+ name + "---------</option>");
+					"<option class='dropdown-item' style='border: 2px solid #8080803b;' selected value=''>------------Select a "
+							+ name + "-------------------</option>");
 		}
 
 		List<DropdownList> dd = (List<DropdownList>) list;
-
-		// StringBuffer sb = new StringBuffer( "<select style='width: 163px; height:
-		// 23px;' class='form-control' name='" + name + "'>");
 
 		String key = null;
 		String val = null;
@@ -137,26 +97,6 @@ public class HTMLUtility {
 		return sb.toString();
 	}
 
-	/*
-	 * public static String getList(String name, String selectedVal, HashMap<String,
-	 * String> map, boolean select) {
-	 * 
-	 * StringBuffer sb = new StringBuffer( "<select class='form-control' name='" +
-	 * name + "'>");
-	 * 
-	 * Set<String> keys = map.keySet(); String val = null;
-	 * 
-	 * if (select) {
-	 * 
-	 * sb.append("<option selected value=''> --Select-- </option>"); }
-	 * 
-	 * for (String key : keys) { val = map.get(key); if
-	 * (key.trim().equals(selectedVal)) { sb.append("<option selected value='" + key
-	 * + "'>" + val + "</option>"); } else { sb.append("<option value='" + key +
-	 * "'>" + val + "</option>"); } } sb.append("</select>"); return sb.toString();
-	 * }
-	 * 
-	 */
 	public static String getList(String name, String selectedVal, HashMap<String, String> map, boolean select) {
 
 		StringBuffer sb = new StringBuffer(

@@ -140,7 +140,7 @@ public class UserListCtl extends BaseCtl {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
-// get the selected checkbox ids array for delete list
+        // get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");
 
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
@@ -160,12 +160,12 @@ public class UserListCtl extends BaseCtl {
 				ServletUtility.redirect(ORSView.USER_CTL, request, response);
 				return;
 			} else if (OP_RESET.equalsIgnoreCase(op)) {
-
 				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
-				pageNo = 1;
+				
 				if (ids != null && ids.length > 0) {
+					pageNo = 1;
 					UserDTO deletedto = new UserDTO();
 					for (String id : ids) {
 						deletedto.setId(DataUtility.getLong(id));

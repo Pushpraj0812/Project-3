@@ -291,7 +291,7 @@ public class MarksheetModelJDBCImpl implements MarksheetModelInt {
 		
 		ArrayList list = new ArrayList();
 		StringBuffer sql = new StringBuffer(
-				"select id,roll_no,name,physics,chemistry,maths(physics+chemistry+maths)as total from st_marksheet order by total desc ");
+				"select id,roll_no,name,physics,chemistry,maths,(physics+chemistry+maths)as total from st_marksheet order by total desc ");
 		if(pageSize>0){
 			pageNo=(pageNo-1)*pageSize;
 			sql.append(" limit "+pageNo+","+pageSize);
@@ -301,14 +301,12 @@ public class MarksheetModelJDBCImpl implements MarksheetModelInt {
 		MarksheetDTO dto =null;
 		try {
 			
-
 			con = JDBCDataSource.getConnection();
 
 			PreparedStatement ps = con.prepareStatement(sql.toString());
 
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
-				System.out.println("heiuiujiou");
 				dto = new MarksheetDTO();
 				dto.setId(rs.getLong(1));
 				dto.setRollNo(rs.getString(2));
@@ -321,7 +319,6 @@ public class MarksheetModelJDBCImpl implements MarksheetModelInt {
 				dto.setModifiedBy(rs.getString(9));
 				dto.setModifiedDatetime(rs.getTimestamp(10));
 				dto.setModifiedDatetime(rs.getTimestamp(11));
-				System.out.println("heiuiujiou"+dto.getId()+"jj"+dto.getChemistry()+"..."+dto.getPhysics()+"df"+dto.getName()+"jj"+dto.getRollNo());
 				list.add(dto);
 			}
 		}catch (Exception e) {
@@ -349,7 +346,7 @@ public class MarksheetModelJDBCImpl implements MarksheetModelInt {
 	 */
 	public List search(MarksheetDTO marksheet, int pageNo, int pageSize) throws ApplicationException {
 		Connection con = null;
-         System.out.println("<<>>>>>>>>>>>>>"+marksheet.getRollNo());
+         
 		StringBuffer sql = new StringBuffer("select * from st_marksheet where 1=1");
 		if (marksheet != null) {
 			if (marksheet.getId() > 0) {
@@ -409,8 +406,6 @@ public class MarksheetModelJDBCImpl implements MarksheetModelInt {
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error("Database Exception..", e);
-			
-			//throw new ApplicationException("Exception : Exception in search time table");
 		} finally {
 			JDBCDataSource.closeConnection(con);
 		}

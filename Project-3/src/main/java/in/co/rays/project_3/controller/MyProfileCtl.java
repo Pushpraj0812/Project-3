@@ -189,7 +189,6 @@ public class MyProfileCtl extends BaseCtl {
 					Userdto.setFirstName(dto.getFirstName());
 					Userdto.setLastName(dto.getLastName());
 					Userdto.setGender(dto.getGender());
-					System.out.println(dto.getGender());
 					Userdto.setMobileNo(dto.getMobileNo());
 					Userdto.setDob(dto.getDob());
 					model.update(Userdto);
