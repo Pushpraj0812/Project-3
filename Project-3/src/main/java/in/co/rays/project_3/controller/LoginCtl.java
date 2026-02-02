@@ -42,7 +42,7 @@ public class LoginCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(LoginCtl.class);
 
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("LoginCtl validate method start");
 
 		boolean pass = true;
@@ -70,7 +70,7 @@ public class LoginCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
+
 		log.debug("LoginCtl populateDTO method start");
 
 		UserDTO dto = new UserDTO();
@@ -78,7 +78,7 @@ public class LoginCtl extends BaseCtl {
 		dto.setId(DataUtility.getLong(request.getParameter("id")));
 		dto.setLogin(DataUtility.getString(request.getParameter("login")));
 		dto.setPassword(DataUtility.getString(request.getParameter("password")));
-		
+
 		log.debug("LoginCtl populateDTO method end");
 		return dto;
 
@@ -86,7 +86,7 @@ public class LoginCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("LoginCtl doGet method start");
 
 		String op = request.getParameter("operation");
@@ -118,14 +118,14 @@ public class LoginCtl extends BaseCtl {
 
 		}
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("LoginCtl doGet method end");
 
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("LoginCtl doPost method start");
 
 		String op = request.getParameter("operation");
@@ -168,7 +168,8 @@ public class LoginCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 
@@ -180,7 +181,7 @@ public class LoginCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("LoginCtl dopost method end");
 
 	}

@@ -34,6 +34,7 @@ public class ProductModelHibImp implements ProductModelInt {
 				tx.rollback();
 
 			}
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in college Add " + e.getMessage());
 		} finally {
 			session.close();
@@ -158,16 +159,15 @@ public class ProductModelHibImp implements ProductModelInt {
 
 	@Override
 	public ProductDTO findByPK(long pk) throws ApplicationException {
-		
+
 		Session session = null;
 		ProductDTO dto = null;
 		try {
 			session = HibDataSource.getSession();
 
 			dto = (ProductDTO) session.get(ProductDTO.class, pk);
-			System.out.println(dto);
 		} catch (HibernateException e) {
-
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception : Exception in getting course by pk");
 		} finally {
 			session.close();

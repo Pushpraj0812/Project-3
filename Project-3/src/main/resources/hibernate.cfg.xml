@@ -10,13 +10,17 @@
 	<!-- This file: -->
 	<!-- 1. Tells Hibernate how to connect to your MySQL database. -->
 	<!-- 2. Configures SQL dialect, schema update rules, and logging. -->
-	<!-- 3. Optionally supports caching and connection pooling (commented out here). -->
+	<!-- 3. Optionally supports caching and connection pooling (commented out 
+		here). -->
 	<!-- 4. Lists all the Java-to-database mapping files. -->
 
 
 	<session-factory>
 		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/project_3</property>
+
+		<property name="hibernate.connection.url">jdbc:mysql://ORS_Project3-mysql:3306/project_3</property>
+
+		<!-- <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/project_3</property> -->
 
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
@@ -34,13 +38,11 @@
 
 
 		<!-- hibernate DCP c3p0 Configuration -->
-		<!-- 
-		<property name="hibernate.c3p0.min_size">10</property> default 3 
-		<property name="hibernate.c3p0.max_size">100</property>default 20 Acquired increment by default =3 
-		<property name="hibernate.c3p0.timeout">10</property>default 20 
-		<property name="hibernate.c3p0.max_statements">50</property> 
-		<property name="hibernate.c3p0.idle_test_period">3000</property> 
-		-->
+		<!-- <property name="hibernate.c3p0.min_size">10</property> default 3 <property 
+			name="hibernate.c3p0.max_size">100</property>default 20 Acquired increment 
+			by default =3 <property name="hibernate.c3p0.timeout">10</property>default 
+			20 <property name="hibernate.c3p0.max_statements">50</property> <property 
+			name="hibernate.c3p0.idle_test_period">3000</property> -->
 
 
 		<mapping resource="in/co/rays/project_3/hbm/UserDTO.hbm.xml" />

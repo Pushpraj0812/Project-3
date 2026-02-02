@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.exception.JDBCConnectionException;
 
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
@@ -52,6 +53,7 @@ public class UserModelHibImp implements UserModelInt {
 				tx.rollback();
 
 			}
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in User Add " + e.getMessage());
 		} finally {
 			session.close();
@@ -61,7 +63,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public void delete(UserDTO dto) throws ApplicationException {
-		
+
 		Session session = null;
 		Transaction tx = null;
 		try {
@@ -80,7 +82,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public void update(UserDTO dto) throws ApplicationException, DuplicateRecordException {
-		
+
 		Session session = null;
 		Transaction tx = null;
 		UserDTO existDto = findByLogin(dto.getLogin());
@@ -105,7 +107,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public UserDTO findByPK(long pk) throws ApplicationException {
-		
+
 		Session session = null;
 		UserDTO dto = null;
 		try {
@@ -113,6 +115,7 @@ public class UserModelHibImp implements UserModelInt {
 			dto = (UserDTO) session.get(UserDTO.class, pk); // SELECT * FROM ST_USER WHERE ID = ?;
 
 		} catch (HibernateException e) {
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception : Exception in getting User by pk");
 		} finally {
 			session.close();
@@ -122,17 +125,18 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public UserDTO findByLogin(String login) throws ApplicationException {
-		
+
 		Session session = null;
 		UserDTO dto = null;
 		try {
 			session = HibDataSource.getSession();
-			Criteria criteria = session.createCriteria(UserDTO.class); // SELECT * FROM ST_USER WHERE (Criteria where ki query bana ta hai )
-			
+			Criteria criteria = session.createCriteria(UserDTO.class); // SELECT * FROM ST_USER WHERE (Criteria where ki
+																		// query bana ta hai )
+
 			criteria.add(Restrictions.eq("login", login)); // SELECT * FROM ST_USER WHERE LOGIN = ?; ()
-			
+
 			List list = criteria.list();// Executes the query and returns a list of results from the database.
-			
+
 			if (list.size() == 1) {
 				dto = (UserDTO) list.get(0);
 			}
@@ -148,12 +152,12 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public List list() throws ApplicationException {
-		
+
 		return list(0, 0);
 	}
 
 	public List list(int pageNo, int pageSize) throws ApplicationException {
-		
+
 		Session session = null;
 		List list = null;
 		try {
@@ -235,16 +239,33 @@ public class UserModelHibImp implements UserModelInt {
 
 		Session session = null;
 		UserDTO dto = null;
-		session = HibDataSource.getSession();
-		Query q = session.createQuery("from UserDTO where login=? and password=?");
-		q.setString(0, login);
-		q.setString(1, password);
-		List list = q.list();
-		if (list.size() > 0) {
-			dto = (UserDTO) list.get(0);
-		} else {
-			dto = null;
+		try {
 
+			session = HibDataSource.getSession();
+
+			Query q = session.createQuery("from UserDTO where login=? and password=?");
+
+			q.setString(0, login);
+			q.setString(1, password);
+
+			List list = q.list();
+
+			if (list.size() > 0) {
+				dto = (UserDTO) list.get(0);
+			}
+
+		} catch (JDBCConnectionException e) {
+
+			System.out.println(" Database connection problem");
+			e.printStackTrace();
+
+			throw new ApplicationException("Data Base Server is down Try After some time.....");
+
+		} finally {
+
+			if (session != null) {
+				session.close();
+			}
 		}
 		return dto;
 	}
@@ -255,7 +276,7 @@ public class UserModelHibImp implements UserModelInt {
 
 	public boolean changePassword(long id, String newPassword, String oldPassword)
 			throws ApplicationException, RecordNotFoundException {
-		
+
 		boolean flag = false;
 		UserDTO dtoExist = null;
 
@@ -296,7 +317,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public boolean forgetPassword(String login) throws RecordNotFoundException, ApplicationException {
-		
+
 		UserDTO userData = findByLogin(login);
 		boolean flag = false;
 		if (userData == null) {
@@ -323,7 +344,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public boolean resetPassword(UserDTO dto) throws ApplicationException, RecordNotFoundException {
-		
+
 		String newPassword = String.valueOf(new Date().getTime()).substring(0, 4);
 		UserDTO userData = findByPK(dto.getId());
 		userData.setPassword(newPassword);
@@ -353,7 +374,7 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public long registerUser(UserDTO dto) throws ApplicationException, DuplicateRecordException {
-		
+
 		long pk = add(dto);
 
 		HashMap<String, String> map = new HashMap<String, String>();

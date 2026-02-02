@@ -28,7 +28,7 @@ public class ProductCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(ProductCtl.class);
 
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("ProductCtl validate method Started");
 
 		boolean pass = true;
@@ -60,7 +60,7 @@ public class ProductCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
+
 		log.debug("ProductCtl populateDTO Method Started");
 
 		ProductDTO dto = new ProductDTO();
@@ -71,14 +71,14 @@ public class ProductCtl extends BaseCtl {
 		dto.setProductCategory(request.getParameter("productCategory"));
 
 		populateBean(dto, request);
-		
+
 		log.debug("ProductCtl populateDTO Method ended");
 		return dto;
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("ProductCtl doget Method Started");
 
 		String op = request.getParameter("operation");
@@ -95,19 +95,20 @@ public class ProductCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 
 		}
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("ProductCtl populateDTO Method ended");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("ProductCtl dopost Method Started");
 
 		String op = request.getParameter("operation");
@@ -136,9 +137,9 @@ public class ProductCtl extends BaseCtl {
 				ServletUtility.setDto(dto, request);
 
 			} catch (ApplicationException e) {
-				e.printStackTrace();
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setDto(dto, request);
@@ -154,7 +155,7 @@ public class ProductCtl extends BaseCtl {
 
 		}
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("ProductCtl dopost Method Started");
 	}
 
