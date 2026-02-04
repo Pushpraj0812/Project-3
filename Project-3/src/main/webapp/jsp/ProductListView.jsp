@@ -116,10 +116,10 @@
 				<div class="col-sm-3">
 					<%
 						HashMap map = new HashMap();
-							map.put("Mobile", "Mobile");
-							map.put("Laptop", "Laptop");
-							map.put("SmartWatch", "SmartWatch");
-							map.put("Earbuds", "Earbuds");
+					map.put("Mobile ", "Mobile ");
+					map.put("Laptop", "Laptop");
+					map.put("SmartWatch", "SmartWatch");
+					map.put("Earbuds", "Earbuds");
 							String htmlList = HTMLUtility.getList("productCategory", dto.getProductCategory(), map);
 					%>
 					<%=htmlList%>
@@ -130,7 +130,7 @@
 
 				<div class="col-sm-2">
 					<input type="text" name="productAmmount"
-						placeholder="Enter productAmmount" class="form-control"
+						placeholder="Enter Product Amount" class="form-control"
 						value="<%=ServletUtility.getParameter("productAmmount", request)%>">
 				</div>
 				&emsp;
@@ -154,10 +154,10 @@
 							<th width="10%"><input type="checkbox" id="select_all"
 								name="Select" class="text"> Select All</th>
 							<th width="5%" class="text">S.NO</th>
-							<th width="15%" class="text">ProductName</th>
-							<th width="15%" class="text">ProductAmmount</th>
-							<th width="20%" class="text">PurchaseDate</th>
-							<th width="10%" class="text">ProductCategory</th>
+							<th width="15%" class="text">Product Name</th>
+							<th width="15%" class="text">Product Amount</th>
+							<th width="20%" class="text">Purchase Date</th>
+							<th width="10%" class="text">Product Category</th>
 							<th width="5%" class="text">Edit</th>
 						</tr>
 					</thead>

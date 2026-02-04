@@ -21,9 +21,9 @@ import in.co.rays.project_3.util.DataUtility;
 import in.co.rays.project_3.util.PropertyReader;
 import in.co.rays.project_3.util.ServletUtility;
 
-
 /**
  * User List functionality controller.to perform Search and List operation.
+ * 
  * @author Pushpraj Singh Kachhaway
  *
  */
@@ -33,7 +33,7 @@ public class UserListCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(UserListCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-		
+
 		log.debug("UserListCtl preload start");
 
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
@@ -49,7 +49,7 @@ public class UserListCtl extends BaseCtl {
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
+
 		log.debug("UserListCtl populateDTO start");
 
 		UserDTO dto = new UserDTO();
@@ -61,7 +61,7 @@ public class UserListCtl extends BaseCtl {
 		dto.setLogin(DataUtility.getString(request.getParameter("login")));
 		dto.setRoleId(DataUtility.getLong(request.getParameter("Role")));
 		populateBean(dto, request);
-		
+
 		log.debug("UserListCtl populateDTO end");
 		return dto;
 	}
@@ -140,7 +140,7 @@ public class UserListCtl extends BaseCtl {
 
 		String op = DataUtility.getString(request.getParameter("operation"));
 
-        // get the selected checkbox ids array for delete list
+		// get the selected checkbox ids array for delete list
 		String[] ids = request.getParameterValues("ids");
 
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
@@ -163,7 +163,7 @@ public class UserListCtl extends BaseCtl {
 				ServletUtility.redirect(ORSView.USER_LIST_CTL, request, response);
 				return;
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
-				
+
 				if (ids != null && ids.length > 0) {
 					pageNo = 1;
 					UserDTO deletedto = new UserDTO();

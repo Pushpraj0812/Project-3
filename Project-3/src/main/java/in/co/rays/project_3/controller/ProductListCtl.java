@@ -27,7 +27,7 @@ public class ProductListCtl extends BaseCtl {
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
 
-		log.debug("CarListCtl populateDTO start");
+		log.debug("ProductListCtl populateDTO start");
 
 		ProductDTO dto = new ProductDTO();
 
@@ -38,7 +38,7 @@ public class ProductListCtl extends BaseCtl {
 
 		populateBean(dto, request);
 
-		log.debug("CarListCtl populateDTO end");
+		log.debug("ProductListCtl populateDTO end");
 		return dto;
 	}
 
@@ -48,7 +48,7 @@ public class ProductListCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("CarListCtl doGet Start");
+		log.debug("ProductListCtl doGet Start");
 
 		List list;
 		List next;
@@ -87,7 +87,7 @@ public class ProductListCtl extends BaseCtl {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		log.debug("CarListCtl doPOst End");
+		log.debug("ProductListCtl doPOst End");
 	}
 
 	/**
@@ -97,7 +97,7 @@ public class ProductListCtl extends BaseCtl {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("CarListCtl doPost Start");
+		log.debug("ProductListCtl doPost Start");
 
 		List list = null;
 		List next = null;
@@ -187,16 +187,21 @@ public class ProductListCtl extends BaseCtl {
 			log.error(e);
 			ServletUtility.setErrorMessage(e.getMessage(), request);
 			ServletUtility.forward(getView(), request, response);
+			System.out.println("VIEW = " + getView());
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
+			log.error(e);
+			ServletUtility.setErrorMessage("Unexpected error", request);
+			ServletUtility.forward(getView(), request, response);
+			System.out.println("VIEW = " + getView());
+			return;
 		}
-		log.debug("CarListCtl doGet End");
+		log.debug("ProductListCtl doGet End");
 	}
 
 	@Override
 	protected String getView() {
 		return ORSView.PRODUCT_LIST_VIEW;
 	}
-
 }

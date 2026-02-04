@@ -103,7 +103,7 @@ i.css {
 									value="<%=DataUtility.getTimestamp(dto.getModifiedDatetime())%>">
 							</div>
 							<div class="md-form">
-								<span class="pl-sm-5"><b>ProductName</b><span
+								<span class="pl-sm-5"><b>Product Name</b><span
 									style="color: red;">*</span></span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -114,7 +114,7 @@ i.css {
 											</div>
 										</div>
 										<input type="text" name="productName" class="form-control"
-											id="defaultForm-email" placeholder="Enter Product"
+											id="defaultForm-email" placeholder="Enter Product Name"
 											value="<%=DataUtility.getStringData(dto.getProductName())%>">
 									</div>
 								</div>
@@ -122,7 +122,7 @@ i.css {
 
 
 
-								<span class="pl-sm-5"><b>ProductAmmount</b><span
+								<span class="pl-sm-5"><b>Product Amount</b><span
 									style="color: red;">*</span></span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -133,14 +133,14 @@ i.css {
 											</div>
 										</div>
 										<input type="text" name="productAmmount" class="form-control"
-											placeholder="Enter Address"
+											placeholder="Product Amount"
 											value="<%=DataUtility.getStringData(dto.getProductAmmount())%>">
 									</div>
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("productAmmount", request)%></font></br>
 
 
-								<span class="pl-sm-5"><b>ProductCategory</b><span
+								<span class="pl-sm-5"><b>Product Category</b><span
 									style="color: red;">*</span></span> </br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -153,7 +153,7 @@ i.css {
 										<%
 											// Preload dropdown map
 											HashMap map = new HashMap();
-											map.put("Mobile", "Mobile");
+											map.put("Mobile ", "Mobile ");
 											map.put("Laptop", "Laptop");
 											map.put("SmartWatch", "SmartWatch");
 											map.put("Earbuds", "Earbuds");
@@ -165,7 +165,7 @@ i.css {
 								</div>
 								<font color="red" class="pl-sm-5"> <%=ServletUtility.getErrorMessage("productCategory", request)%></font></br>
 
-								<span class="pl-sm-5"><b>PurchaseDate</b> <span
+								<span class="pl-sm-5"><b>Purchase Date</b> <span
 									style="color: red;">*</span></span></br>
 								<div class="col-sm-12">
 									<div class="input-group">
@@ -175,7 +175,7 @@ i.css {
 											</div>
 										</div>
 										<input type="text" id="datepicker3" name="purchaseDate"
-											class="form-control" placeholder="PurchaseDate"
+											class="form-control" placeholder="Purchase Date"
 											readonly="readonly"
 											value="<%=DataUtility.getDateString(dto.getPurchaseDate())%>">
 									</div>

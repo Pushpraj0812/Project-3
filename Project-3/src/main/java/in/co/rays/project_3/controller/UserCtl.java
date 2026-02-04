@@ -26,7 +26,8 @@ import in.co.rays.project_3.util.ServletUtility;
 
 /**
  * User functionality controller.to perform add,delete and update operation
- * @author Pushpraj Singh Kachhaway 
+ * 
+ * @author Pushpraj Singh Kachhaway
  *
  */
 @WebServlet(urlPatterns = { "/ctl/UserCtl" })
@@ -215,7 +216,8 @@ public class UserCtl extends BaseCtl {
 						ServletUtility.setSuccessMessage("Data is successfully saved", request);
 					} catch (ApplicationException e) {
 						log.error(e);
-						ServletUtility.handleException(e, request, response);
+						ServletUtility.setErrorMessage(e.getMessage(), request);
+						ServletUtility.forward(getView(), request, response);
 						return;
 					} catch (DuplicateRecordException e) {
 						ServletUtility.setDto(dto, request);
@@ -227,11 +229,13 @@ public class UserCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setDto(dto, request);
 				ServletUtility.setErrorMessage("Login id already exists", request);
+				ServletUtility.forward(getView(), request, response);
 			}
 		} else if (OP_DELETE.equalsIgnoreCase(op)) {
 
@@ -242,7 +246,8 @@ public class UserCtl extends BaseCtl {
 				return;
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 

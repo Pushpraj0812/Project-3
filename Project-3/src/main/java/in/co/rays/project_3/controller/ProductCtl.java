@@ -126,11 +126,9 @@ public class ProductCtl extends BaseCtl {
 					dto.setId(id);
 					model.update(dto);
 					ServletUtility.setDto(dto, request);
-
 					ServletUtility.setSuccessMessage("Record Successfully Updated", request);
 
 				} else {
-					// long pk
 					model.add(dto);
 					ServletUtility.setSuccessMessage("Record Successfully Saved", request);
 				}
@@ -144,6 +142,7 @@ public class ProductCtl extends BaseCtl {
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setDto(dto, request);
 				ServletUtility.setErrorMessage("ProductName Already Exists", request);
+				ServletUtility.forward(getView(), request, response);
 			}
 		} else if (OP_RESET.equalsIgnoreCase(op)) {
 			ServletUtility.redirect(ORSView.PRODUCT_CTL, request, response);
@@ -164,5 +163,4 @@ public class ProductCtl extends BaseCtl {
 
 		return ORSView.PRODUCT_VIEW;
 	}
-
 }
