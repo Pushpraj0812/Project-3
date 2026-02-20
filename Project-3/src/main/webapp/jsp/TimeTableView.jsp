@@ -36,11 +36,11 @@ i.css {
 .p4 {
 	background-image: url('<%=ORSView.APP_CONTEXT%>/img/user1.jpg');
 	background-repeat: no-repeat;
-	background-attachment: fixed; 
+	background-attachment: fixed;
 	background-size: cover;
 	padding-top: 75px;
-	
-/* 	background-size: 100%; */
+
+	/* 	background-size: 100%; */
 }
 </style>
 </head>
@@ -218,7 +218,7 @@ i.css {
 
 								</br>
 								<%
-									if (dto.getCourseName()!= null) {
+									if (dto.getCourseName() != null) {
 								%>
 								<div class="text-center">
 									<input type="submit" name="operation"

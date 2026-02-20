@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +13,13 @@ import org.apache.log4j.Logger;
 
 import in.co.rays.project_3.dto.BaseDTO;
 import in.co.rays.project_3.dto.RoleDTO;
+import in.co.rays.project_3.dto.SessionDTO;
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
+import in.co.rays.project_3.exception.DuplicateRecordException;
 import in.co.rays.project_3.model.ModelFactory;
 import in.co.rays.project_3.model.RoleModelInt;
+import in.co.rays.project_3.model.SessionModelInt;
 import in.co.rays.project_3.model.UserModelInt;
 import in.co.rays.project_3.util.DataUtility;
 import in.co.rays.project_3.util.DataValidator;
@@ -93,29 +97,47 @@ public class LoginCtl extends BaseCtl {
 
 		UserModelInt model = ModelFactory.getInstance().getUserModel();
 
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession(false);
 
 		long id = DataUtility.getLong(request.getParameter("id"));
 
 		if (OP_LOG_OUT.equals(op)) {
 			session = request.getSession();
-			session.invalidate();
-			ServletUtility.setSuccessMessage("User Logged Out Successfully!", request);
-			ServletUtility.forward(ORSView.LOGIN_VIEW, request, response);
-			return;
-		}
-		if (id > 0) {
-			UserDTO dto;
-			try {
-				dto = model.findByPK(id);
-				ServletUtility.setDto(dto, request);
-			} catch (ApplicationException e) {
 
-				e.printStackTrace();
-				ServletUtility.handleException(e, request, response);
+			if (session != null) {
+
+				// Login ke time store kiya hua DB sessionId nikalo
+				Long sessionId = (Long) session.getAttribute("sessionId");
+
+				// DB logout (logoutTime update)
+				if (sessionId != null) {
+					SessionModelInt sessionModel = ModelFactory.getInstance().getSessionModel();
+
+					try {
+						sessionModel.logout(sessionId);
+					} catch (ApplicationException e) {
+						e.printStackTrace();
+					}
+				}
+
+				session.invalidate();
+				ServletUtility.setSuccessMessage("User Logged Out Successfully!", request);
+				ServletUtility.redirect(ORSView.LOGIN_CTL, request, response);
 				return;
 			}
+			if (id > 0) {
+				UserDTO dto;
+				try {
+					dto = model.findByPK(id);
+					ServletUtility.setDto(dto, request);
+				} catch (ApplicationException e) {
 
+					e.printStackTrace();
+					ServletUtility.handleException(e, request, response);
+					return;
+				}
+
+			}
 		}
 		ServletUtility.forward(getView(), request, response);
 
@@ -141,6 +163,21 @@ public class LoginCtl extends BaseCtl {
 				dto = userModel.authenticate(dto.getLogin(), dto.getPassword());
 				if (dto != null) {
 					session.setAttribute("user", dto);
+
+					// SESSION TABLE ENTRY (AUTO)
+					SessionDTO sDto = new SessionDTO();
+					sDto.setUserName(dto.getLogin());
+					sDto.setSessionToken(session.getId()); // HttpSession ID
+					sDto.setSessionStatus("ACTIVE");
+					sDto.setLoginTime(LocalDateTime.now());
+
+					SessionModelInt sessionModel = ModelFactory.getInstance().getSessionModel();
+
+					long sessionId = sessionModel.add(sDto);
+
+					// future logout ke liye store
+					session.setAttribute("sessionId", sessionId);
+
 					long roleId = dto.getRoleId();
 					RoleDTO rdto = model1.findByPK(roleId);
 					if (rdto != null) {
@@ -171,6 +208,8 @@ public class LoginCtl extends BaseCtl {
 				ServletUtility.setErrorMessage(e.getMessage(), request);
 				ServletUtility.forward(getView(), request, response);
 				return;
+			} catch (DuplicateRecordException e) {
+				e.printStackTrace();
 			}
 
 		} else if (OP_SIGN_UP.equalsIgnoreCase(op)) {

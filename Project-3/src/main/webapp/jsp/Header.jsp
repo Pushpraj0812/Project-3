@@ -49,10 +49,10 @@
 	%>
 	<div class="header">
 		<nav class="navbar navbar-expand-lg fixed-top aj"> <a
-			class="navbar-brand" href="<%=ORSView.WELCOME_CTL%>"><img  
+			class="navbar-brand" href="<%=ORSView.WELCOME_CTL%>"><img
 			src="<%=ORSView.APP_CONTEXT%>/img/custom.png" width="190px"
 			height="50px"></a>
-		<button class="navbar-toggler " type="button" data-toggle="collapse"   
+		<button class="navbar-toggler " type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"> <i class="fa fa-bars"
@@ -218,6 +218,20 @@
 							class="fa fa-file"></i>Add Product</a> <a class="dropdown-item"
 							href="<%=ORSView.PRODUCT_LIST_CTL%>"><i class="fa fa-paste"></i>Product
 							List</a>
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="sessionDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Session</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="sessionDropdown">
+						<a class="dropdown-item" href="<%=ORSView.SESSION_CTL%>"> <i
+							class="fa fa-clock-o"></i> Add Session
+						</a> <a class="dropdown-item" href="<%=ORSView.SESSION_LIST_CTL%>">
+							<i class="fa fa-list"></i> Session List
+						</a>
 					</div></li>
 
 				<%

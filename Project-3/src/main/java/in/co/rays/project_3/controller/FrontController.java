@@ -22,7 +22,7 @@ import in.co.rays.project_3.util.ServletUtility;
  * @author Pushpraj Singh Kachhaway
  *
  */
-@WebFilter(urlPatterns={"/ctl/*","/doc/*"})
+@WebFilter(urlPatterns={"/ctl/*"})
 public class FrontController implements Filter {
 	
 	private static Logger log = Logger.getLogger(FrontController.class);

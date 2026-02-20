@@ -181,7 +181,6 @@ public class UserModelHibImp implements UserModelInt {
 	}
 
 	public List search(UserDTO dto) throws ApplicationException {
-		// TODO Auto-generated method stub
 		return search(dto, 0, 0);
 	}
 
@@ -256,7 +255,6 @@ public class UserModelHibImp implements UserModelInt {
 
 		} catch (JDBCConnectionException e) {
 
-			System.out.println(" Database connection problem");
 			e.printStackTrace();
 
 			throw new ApplicationException("Data Base Server is down Try After some time.....");
@@ -337,7 +335,6 @@ public class UserModelHibImp implements UserModelInt {
 		msg.setMessage(message);
 		msg.setMessageType(EmailMessage.HTML_MSG);
 		EmailUtility.sendMail(msg);
-		System.out.println(flag);
 		flag = true;
 
 		return flag;

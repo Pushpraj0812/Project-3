@@ -71,6 +71,10 @@ public interface ORSView {
 	public String PRODUCT_VIEW = PAGE_FOLDER + "/ProductView.jsp";
 
 	public String PRODUCT_LIST_VIEW = PAGE_FOLDER + "/ProductListView.jsp";
+	
+	public String SESSION_VIEW = PAGE_FOLDER + "/SessionView.jsp";
+	
+	public String SESSION_LIST_VIEW = PAGE_FOLDER + "/SessionListView.jsp";
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
@@ -129,5 +133,9 @@ public interface ORSView {
 	public String FORGET_PASSWORD_CTL = APP_CONTEXT + "/ForgetPasswordCtl";
 
 	public String MARKSHEET_MERIT_LIST_CTL = APP_CONTEXT + "/ctl/MarksheetMeritListCtl";
+	
+	public String SESSION_CTL = APP_CONTEXT + "/ctl/SessionCtl";
+	
+	public String SESSION_LIST_CTL = APP_CONTEXT + "/ctl/SessionListCtl";
 
 }

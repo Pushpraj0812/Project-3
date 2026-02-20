@@ -49,7 +49,6 @@ public class HTMLUtility {
 		}
 
 		sb.append("</select>");
-		System.out.println("get list 1=========" + sb.toString());
 
 		return sb.toString();
 	}
@@ -93,7 +92,6 @@ public class HTMLUtility {
 			}
 		}
 		sb.append("</select>");
-		System.out.println("get list 2=========" + sb.toString());
 		return sb.toString();
 	}
 
@@ -119,7 +117,6 @@ public class HTMLUtility {
 			}
 		}
 		sb.append("</select>");
-		System.out.println("get list 3=========" + sb.toString());
 		return sb.toString();
 	}
 

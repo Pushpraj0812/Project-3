@@ -36,7 +36,7 @@
 		$("#udate5").datepicker({
 			changeMonth : true,
 			changeYear : true,
-			yearRange : '2022:2023',
+			//yearRange : '2022:2023',
 			dateFormat : 'dd/mm/yy',
 
 			// Disable for Sunday
@@ -54,7 +54,7 @@
 			changeYear : true,
 			//yearRange: "c-20:c+0",
 			//yearRange : "1980:2025",
-			maxDate : '31/12/2003',
+			maxDate : '-18Y',
 			// minDate:0
 			yearRange : "-40:-18"
 		});
@@ -73,9 +73,5 @@
 </script>
 </head>
 <body>
-
-	<!-- <p>Date: <input type="text" id="datepicker"></p> -->
-
-
 </body>
 </html>

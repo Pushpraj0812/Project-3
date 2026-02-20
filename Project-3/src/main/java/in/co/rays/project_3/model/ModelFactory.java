@@ -29,6 +29,18 @@ public final class ModelFactory {
 		return mFactory;
 	}
 
+	public SessionModelInt getSessionModel() {
+
+		SessionModelInt sessionModel = (SessionModelInt) modelCache.get("sessionModel");
+		if (sessionModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				sessionModel = new SessionModelHibImpl();
+			}
+			modelCache.put("sessionModel", sessionModel); // Store created object in cache
+		}
+		return sessionModel;
+	}
+
 	public ProductModelInt getProductModel() {
 
 		// line 35 => It tries to get "productModel" object from cache. If found it
