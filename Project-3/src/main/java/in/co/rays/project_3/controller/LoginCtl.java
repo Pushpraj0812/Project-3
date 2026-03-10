@@ -182,8 +182,6 @@ public class LoginCtl extends BaseCtl {
 				ServletUtility.setErrorMessage(e.getMessage(), request);
 				ServletUtility.forward(getView(), request, response);
 				return;
-			} catch (DuplicateRecordException e) {
-				e.printStackTrace();
 			}
 
 		} else if (OP_SIGN_UP.equalsIgnoreCase(op)) {
