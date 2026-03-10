@@ -99,26 +99,7 @@
 			</exclusions>
 		</dependency>
 	</dependencies>
-	
 	<build>
-		
-  <!-- <resources>
-
-         Default resources 
-        <resource>
-            <directory>src/main/resources</directory>
-        </resource>
-
-        XML files inside java 
-        <resource>
-            <directory>src/main/java</directory>
-            <includes>
-                <include>**/*.xml</include>
-            </includes>
-        </resource>
-
-    </resources> -->
-
 		<finalName>project_3</finalName>
 	</build>
 
