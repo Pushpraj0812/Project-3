@@ -63,6 +63,6 @@
 		<mapping
 			resource="in/co/rays/project_3/hbm/ProductDTO.hbm.xml" />
 		<mapping
-			resource="in/co/rays/project_3/dto/SessionDTO.hbm.xml" />
+			resource="in/co/rays/project_3/hbm/SessionDTO.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>
