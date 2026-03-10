@@ -220,19 +220,7 @@
 							List</a>
 					</div></li>
 
-				<li class="nav-item dropdown" style="padding-left: 5px"><a
-					class="nav-link dropdown-toggle" href="#" id="sessionDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <font style="color: white;">Session</font>
-				</a>
-
-					<div class="dropdown-menu" aria-labelledby="sessionDropdown">
-						<a class="dropdown-item" href="<%=ORSView.SESSION_CTL%>"> <i
-							class="fa fa-clock-o"></i> Add Session
-						</a> <a class="dropdown-item" href="<%=ORSView.SESSION_LIST_CTL%>">
-							<i class="fa fa-list"></i> Session List
-						</a>
-					</div></li>
+				
 
 				<%
 					}
