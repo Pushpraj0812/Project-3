@@ -106,20 +106,6 @@ public class LoginCtl extends BaseCtl {
 
 			if (session != null) {
 
-				// Login ke time store kiya hua DB sessionId nikalo
-				Long sessionId = (Long) session.getAttribute("sessionId");
-
-				// DB logout (logoutTime update)
-				if (sessionId != null) {
-					SessionModelInt sessionModel = ModelFactory.getInstance().getSessionModel();
-
-					try {
-						sessionModel.logout(sessionId);
-					} catch (ApplicationException e) {
-						e.printStackTrace();
-					}
-				}
-
 				session.invalidate();
 				ServletUtility.setSuccessMessage("User Logged Out Successfully!", request);
 				ServletUtility.redirect(ORSView.LOGIN_CTL, request, response);
@@ -164,19 +150,7 @@ public class LoginCtl extends BaseCtl {
 				if (dto != null) {
 					session.setAttribute("user", dto);
 
-					// SESSION TABLE ENTRY (AUTO)
-					SessionDTO sDto = new SessionDTO();
-					sDto.setUserName(dto.getLogin());
-					sDto.setSessionToken(session.getId()); // HttpSession ID
-					sDto.setSessionStatus("ACTIVE");
-					sDto.setLoginTime(LocalDateTime.now());
 
-					SessionModelInt sessionModel = ModelFactory.getInstance().getSessionModel();
-
-					long sessionId = sessionModel.add(sDto);
-
-					// future logout ke liye store
-					session.setAttribute("sessionId", sessionId);
 
 					long roleId = dto.getRoleId();
 					RoleDTO rdto = model1.findByPK(roleId);
