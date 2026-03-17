@@ -29,6 +29,66 @@ public final class ModelFactory {
 		return mFactory;
 	}
 
+	public InsuranceModelInt getInsuranceModel() {
+
+		InsuranceModelInt InsuranceModel = (InsuranceModelInt) modelCache.get("InsuranceModel");
+		if (InsuranceModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				InsuranceModel = new InsuranceModelHibImpl();
+			}
+			modelCache.put("InsuranceModel", InsuranceModel);
+		}
+		return InsuranceModel;
+	}
+
+	public TravelModelInt getTravelModel() {
+
+		TravelModelInt travelModel = (TravelModelInt) modelCache.get("travelModel");
+		if (travelModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				travelModel = new TravelModelHibImpl();
+			}
+			modelCache.put("travelModel", travelModel);
+		}
+		return travelModel;
+	}
+
+	public PodcastModelInt getPodcastModel() {
+
+		PodcastModelInt podcastModel = (PodcastModelInt) modelCache.get("podcastModel");
+		if (podcastModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				podcastModel = new PodcastModelHibImpl();
+			}
+			modelCache.put("podcastModel", podcastModel);
+		}
+		return podcastModel;
+	}
+
+	public TransportModelInt getTransportModel() {
+
+		TransportModelInt transportModel = (TransportModelInt) modelCache.get("transportModel");
+		if (transportModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				transportModel = new TransportModelHibImpl();
+			}
+			modelCache.put("transportModel", transportModel);
+		}
+		return transportModel;
+	}
+
+	public DispatchModelInt getDispatchModel() {
+
+		DispatchModelInt dispatchModel = (DispatchModelInt) modelCache.get("dispatchModel");
+		if (dispatchModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				dispatchModel = new DispatchModelHibImpl();
+			}
+			modelCache.put("dispatchModel", dispatchModel);
+		}
+		return dispatchModel;
+	}
+
 	public SessionModelInt getSessionModel() {
 
 		SessionModelInt sessionModel = (SessionModelInt) modelCache.get("sessionModel");

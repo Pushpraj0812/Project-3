@@ -30,8 +30,6 @@ public class SessionListCtl extends BaseCtl {
 
 	private static Logger log = Logger.getLogger(SessionListCtl.class);
 
-	/* ---------------- Populate DTO ---------------- */
-
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
 
@@ -48,8 +46,6 @@ public class SessionListCtl extends BaseCtl {
 		log.debug("SessionListCtl populateDTO end");
 		return dto;
 	}
-
-	/* ---------------- GET ---------------- */
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -92,8 +88,6 @@ public class SessionListCtl extends BaseCtl {
 		}
 		log.debug("SessionListCtl doGet end");
 	}
-
-	/* ---------------- POST ---------------- */
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

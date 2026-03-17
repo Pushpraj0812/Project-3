@@ -25,7 +25,6 @@
 		<property name="hibernate.connection.username">root</property>
 		<property name="hibernate.connection.password">root</property>
 
-
 		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
 		<property name="hbm2ddl.auto">update</property>
@@ -44,7 +43,6 @@
 			20 <property name="hibernate.c3p0.max_statements">50</property> <property 
 			name="hibernate.c3p0.idle_test_period">3000</property> -->
 
-
 		<mapping resource="in/co/rays/project_3/hbm/UserDTO.hbm.xml" />
 		<mapping
 			resource="in/co/rays/project_3/hbm/StudentDTO.hbm.xml" />
@@ -62,7 +60,29 @@
 			resource="in/co/rays/project_3/hbm/SubjectDTO.hbm.xml" />
 		<mapping
 			resource="in/co/rays/project_3/hbm/ProductDTO.hbm.xml" />
+			
+			
+		<!-- <mapping
+			resource="in/co/rays/project_3/hbm/SessionDTO.hbm.xml" />
+		<mapping
+			resource="in/co/rays/project_3/hbm/DispatchDTO.hbm.xml" />
+		<mapping
+			resource="in/co/rays/project_3/hbm/TransportDTO.hbm.xml" />
+		<mapping
+			resource="in/co/rays/project_3/hbm/PodcastDTO.hbm.xml" />
+		<mapping resource="in/co/rays/project_3/hbm/TravelDTO.hbm.xml" />
+		<mapping resource="in/co/rays/project_3/hbm/Insurance.hbm.xml" /> -->
+		
+		
 		<mapping
 			resource="in/co/rays/project_3/dto/SessionDTO.hbm.xml" />
+		<mapping
+			resource="in/co/rays/project_3/dto/DispatchDTO.hbm.xml" />
+		<mapping
+			resource="in/co/rays/project_3/dto/TransportDTO.hbm.xml" />
+		<mapping
+			resource="in/co/rays/project_3/dto/PodcastDTO.hbm.xml" />
+		<mapping resource="in/co/rays/project_3/dto/TravelDTO.hbm.xml" />
+		<mapping resource="in/co/rays/project_3/dto/Insurance.hbm.xml" />
 	</session-factory>
 </hibernate-configuration>

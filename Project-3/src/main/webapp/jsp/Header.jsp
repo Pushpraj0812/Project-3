@@ -220,7 +220,97 @@
 							List</a>
 					</div></li>
 
-				
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="sessionDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Session</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="sessionDropdown">
+						<a class="dropdown-item" href="<%=ORSView.SESSION_CTL%>"> <i
+							class="fa fa-user-clock"></i> Add Session
+						</a> <a class="dropdown-item" href="<%=ORSView.SESSION_LIST_CTL%>">
+							<i class="fa fa-history"></i> Session List
+						</a>
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="dispatchDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Dispatch</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="sessionDropdown">
+						<a class="dropdown-item" href="<%=ORSView.DISPATCH_CTL%>"> <i
+							class="fa fa-user-clock"></i> Add DISPATCH
+						</a> <a class="dropdown-item" href="<%=ORSView.DISPATCH_LIST_CTL%>">
+							<i class="fa fa-history"></i> DISPATCH List
+						</a>
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="transportDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Transport</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="transportDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.TRANSPORT_CTL%>"> <i
+							class="fa fa-truck"></i> Add Transport
+						</a> <a class="dropdown-item" href="<%=ORSView.TRANSPORT_LIST_CTL%>">
+							<i class="fa fa-list"></i> Transport List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="podcastDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Podcast</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="transportDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.PODCAST_CTL%>"> <i
+							class="fa fa-truck"></i> Add Podcast
+						</a> <a class="dropdown-item" href="<%=ORSView.PODCAST_LIST_CTL%>">
+							<i class="fa fa-list"></i> Podcast List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="podcastDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Travel</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="transportDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.TRAVEL_CTL%>"> <i
+							class="fa fa-truck"></i> Add Travel
+						</a> <a class="dropdown-item" href="<%=ORSView.TRAVEL_LIST_CTL%>">
+							<i class="fa fa-list"></i> Travel List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="podcastDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Insurance</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="transportDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.INSURANCE_CTL%>"> <i
+							class="fa fa-truck"></i> Add Insurance
+						</a> <a class="dropdown-item" href="<%=ORSView.INSURANCE_LIST_CTL%>">
+							<i class="fa fa-list"></i> Insurance List
+						</a>
+
+					</div></li>
 
 				<%
 					}

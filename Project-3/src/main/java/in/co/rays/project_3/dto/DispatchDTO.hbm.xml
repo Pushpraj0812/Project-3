@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping
+	package="in.co.rays.project_3.dto">
+
+	<class name="DispatchDTO" table="ST_DISPATCH">
+
+		<id name="id" column="ID" type="long">
+			<generator class="native" />
+		</id>
+
+		<property name="dispatchId" column="DISPATCH_ID" type="long" />
+
+		<property name="dispatchDate" column="DISPATCH_DATE"
+			type="date" />
+
+		<property name="status" column="STATUS" type="string"
+			length="50" />
+
+		<property name="courierName" column="COURIER_NAME"
+			type="string" length="100" />
+
+	</class>
+
+</hibernate-mapping>

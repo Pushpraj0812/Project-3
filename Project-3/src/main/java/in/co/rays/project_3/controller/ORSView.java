@@ -71,10 +71,30 @@ public interface ORSView {
 	public String PRODUCT_VIEW = PAGE_FOLDER + "/ProductView.jsp";
 
 	public String PRODUCT_LIST_VIEW = PAGE_FOLDER + "/ProductListView.jsp";
-	
+
 	public String SESSION_VIEW = PAGE_FOLDER + "/SessionView.jsp";
-	
+
 	public String SESSION_LIST_VIEW = PAGE_FOLDER + "/SessionListView.jsp";
+
+	public String DISPATCH_VIEW = PAGE_FOLDER + "/DispatchView.jsp";
+
+	public String DISPATCH_LIST_VIEW = PAGE_FOLDER + "/DispatchListView.jsp";
+
+	public String TRANSPORT_VIEW = PAGE_FOLDER + "/TransportView.jsp";
+
+	public String TRANSPORT_LIST_VIEW = PAGE_FOLDER + "/TransportListView.jsp";
+
+	public String PODCAST_VIEW = PAGE_FOLDER + "/PodcastView.jsp";
+
+	public String PODCAST_LIST_VIEW = PAGE_FOLDER + "/PodcastListView.jsp";
+
+	public String TRAVEL_VIEW = PAGE_FOLDER + "/TravelView.jsp";
+
+	public String TRAVEL_LIST_VIEW = PAGE_FOLDER + "/TravelListView.jsp";
+
+	public String INSURANCE_VIEW = PAGE_FOLDER + "/InsuranceView.jsp";
+
+	public String INSURANCE_LIST_VIEW = PAGE_FOLDER + "/InsuranceListView.jsp";
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
@@ -133,9 +153,29 @@ public interface ORSView {
 	public String FORGET_PASSWORD_CTL = APP_CONTEXT + "/ForgetPasswordCtl";
 
 	public String MARKSHEET_MERIT_LIST_CTL = APP_CONTEXT + "/ctl/MarksheetMeritListCtl";
-	
+
 	public String SESSION_CTL = APP_CONTEXT + "/ctl/SessionCtl";
-	
+
 	public String SESSION_LIST_CTL = APP_CONTEXT + "/ctl/SessionListCtl";
+
+	public String DISPATCH_CTL = APP_CONTEXT + "/ctl/DispatchCtl";
+
+	public String DISPATCH_LIST_CTL = APP_CONTEXT + "/ctl/DispatchListCtl";
+
+	public String TRANSPORT_CTL = APP_CONTEXT + "/ctl/TransportCtl";
+
+	public String TRANSPORT_LIST_CTL = APP_CONTEXT + "/ctl/TransportListCtl";
+
+	public String PODCAST_CTL = APP_CONTEXT + "/ctl/PodcastCtl";
+
+	public String PODCAST_LIST_CTL = APP_CONTEXT + "/ctl/PodcastListCtl";
+
+	public String TRAVEL_CTL = APP_CONTEXT + "/ctl/TravelCtl";
+
+	public String TRAVEL_LIST_CTL = APP_CONTEXT + "/ctl/TravelListCtl";
+
+	public String INSURANCE_CTL = APP_CONTEXT + "/ctl/InsuranceCtl";
+
+	public String INSURANCE_LIST_CTL = APP_CONTEXT + "/ctl/InsuranceListCtl";
 
 }

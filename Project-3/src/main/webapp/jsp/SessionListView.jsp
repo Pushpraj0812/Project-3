@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="in.co.rays.project_3.util.DataUtility"%>
@@ -102,7 +103,7 @@
 
 				<div class="col-sm-3">
 					<%
-						java.util.HashMap map = new java.util.HashMap();
+						HashMap map = new HashMap();
 							map.put("ACTIVE", "ACTIVE");
 							map.put("INACTIVE", "INACTIVE");
 					%>

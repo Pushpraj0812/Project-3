@@ -25,8 +25,6 @@ public class SessionCtl extends BaseCtl {
 
 	private static Logger log = Logger.getLogger(SessionCtl.class);
 
-	/* -------------------- VALIDATION -------------------- */
-
 	@Override
 	protected boolean validate(HttpServletRequest request) {
 
@@ -53,8 +51,6 @@ public class SessionCtl extends BaseCtl {
 		return pass;
 	}
 
-	/* -------------------- POPULATE DTO -------------------- */
-
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
 
@@ -67,14 +63,11 @@ public class SessionCtl extends BaseCtl {
 		dto.setUserName(DataUtility.getString(request.getParameter("userName")));
 		dto.setSessionStatus(DataUtility.getString(request.getParameter("sessionStatus")));
 
-		// IMPORTANT: login/logout time should NOT come from UI
 		populateBean(dto, request);
 
 		log.debug("SessionCtl populateDTO end");
 		return dto;
 	}
-
-	/* -------------------- GET -------------------- */
 
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -98,8 +91,6 @@ public class SessionCtl extends BaseCtl {
 
 		ServletUtility.forward(getView(), request, response);
 	}
-
-	/* -------------------- POST -------------------- */
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

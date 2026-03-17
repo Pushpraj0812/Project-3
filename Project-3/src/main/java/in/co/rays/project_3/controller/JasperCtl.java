@@ -45,8 +45,6 @@ public class JasperCtl extends BaseCtl {
 
 		try {
 
-			// Expected keys from system.properties jasperctl path and database.
-
 			ResourceBundle rb = ResourceBundle.getBundle("in.co.rays.project_3.bundle.system");
 
 			InputStream jrxmlStream = getClass().getClassLoader().getResourceAsStream("Reports/report3.jrxml");

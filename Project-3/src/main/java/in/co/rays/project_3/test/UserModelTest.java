@@ -61,7 +61,7 @@ public class UserModelTest {
 	}
 
 	public static void listTest() throws ApplicationException {
-		// TODO Auto-generated method stub
+		
 		UserDTO dto = new UserDTO();
 		List list = new ArrayList();
 		list = model.list(1, 10);
@@ -106,7 +106,6 @@ public class UserModelTest {
 		dto.setPassword("0812");
 		dto.setLogin("Pushpraj Singh Kachhaway Singh Kachhaway0812@gmail.com");
 		dto.setGender("male");
-
 		dto.setCreatedBy("admin");
 		dto.setModifiedBy("admin");
 		dto.setRoleId(1);
