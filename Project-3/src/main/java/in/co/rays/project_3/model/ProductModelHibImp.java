@@ -100,7 +100,7 @@ public class ProductModelHibImp implements ProductModelInt {
 			session = HibDataSource.getSession();
 			Criteria criteria = session.createCriteria(ProductDTO.class);
 			if (pageSize > 0) {
-				pageNo = ((pageNo - 1) * pageSize) + 1;
+				pageNo = ((pageNo - 1) * pageSize) ;
 				criteria.setFirstResult(pageNo);
 				criteria.setMaxResults(pageSize);
 			}
