@@ -40,8 +40,9 @@ public class FrontController implements Filter {
 		
 		HttpSession session = request.getSession();
 		
-		String uri=request.getRequestURI();
-		request.setAttribute("uri", uri);
+		/*
+		 * String uri=request.getRequestURI(); request.setAttribute("uri", uri);
+		 */
 		
 		if (session.getAttribute("user") == null) {
 			request.setAttribute("error", "Your session has been expired please Login again!");

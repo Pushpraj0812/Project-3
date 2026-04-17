@@ -16,9 +16,11 @@
 
 
 	<session-factory>
-		<property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 
-		<!-- <property name="hibernate.connection.url">jdbc:mysql://ORS_Project3-mysql:3306/project_3</property> -->
+		<!-- For eclipse <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> -->
+
+		<!-- For docker -->
+		<property name="hibernate.connection.url">jdbc:mysql://ORS_Project3-mysql:3306/project_3</property>
 
 		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/project_3</property>
 
@@ -30,8 +32,6 @@
 		<property name="hbm2ddl.auto">update</property>
 		<property name="show_sql">true</property> <!-- To print sql -->
 
-		<!-- Second-level cache (EhCache) is commented out. Used for caching objects 
-			across sessions. -->
 		<!-- <property name="hibernate.cache.provider_class"> org.hibernate.cache.EhCacheProvider</property> 
 			<property name="hibernate.cache.use_second_level_cache"> true</property> -->
 
@@ -60,9 +60,10 @@
 			resource="in/co/rays/project_3/hbm/SubjectDTO.hbm.xml" />
 		<mapping
 			resource="in/co/rays/project_3/hbm/ProductDTO.hbm.xml" />
-			
-			
-		<!-- <mapping
+
+		<mapping resource="in/co/rays/project_3/hbm/PolicyDTO.hbm.xml" />
+
+		<mapping
 			resource="in/co/rays/project_3/hbm/SessionDTO.hbm.xml" />
 		<mapping
 			resource="in/co/rays/project_3/hbm/DispatchDTO.hbm.xml" />
@@ -71,18 +72,11 @@
 		<mapping
 			resource="in/co/rays/project_3/hbm/PodcastDTO.hbm.xml" />
 		<mapping resource="in/co/rays/project_3/hbm/TravelDTO.hbm.xml" />
-		<mapping resource="in/co/rays/project_3/hbm/Insurance.hbm.xml" /> -->
-		
-		
+		<mapping resource="in/co/rays/project_3/hbm/Insurance.hbm.xml" />
+		<mapping resource="in/co/rays/project_3/hbm/StockDTO.hbm.xml" />
+		<mapping resource="in/co/rays/project_3/hbm/LabTest.hbm.xml" />
 		<mapping
-			resource="in/co/rays/project_3/dto/SessionDTO.hbm.xml" />
-		<mapping
-			resource="in/co/rays/project_3/dto/DispatchDTO.hbm.xml" />
-		<mapping
-			resource="in/co/rays/project_3/dto/TransportDTO.hbm.xml" />
-		<mapping
-			resource="in/co/rays/project_3/dto/PodcastDTO.hbm.xml" />
-		<mapping resource="in/co/rays/project_3/dto/TravelDTO.hbm.xml" />
-		<mapping resource="in/co/rays/project_3/dto/Insurance.hbm.xml" />
+			resource="in/co/rays/project_3/hbm/MediaCoverageDTO.hbm.xml" />
+
 	</session-factory>
 </hibernate-configuration>

@@ -96,6 +96,24 @@ public interface ORSView {
 
 	public String INSURANCE_LIST_VIEW = PAGE_FOLDER + "/InsuranceListView.jsp";
 
+	public String STOCK_VIEW = PAGE_FOLDER + "/StockView.jsp";
+
+	public String STOCK_LIST_VIEW = PAGE_FOLDER + "/StockListView.jsp";
+
+	public String LABTEST_VIEW = PAGE_FOLDER + "/LabTestView.jsp";
+
+	public String LABTEST_LIST_VIEW = PAGE_FOLDER + "/LabTestListView.jsp";
+
+	public String MEDIA_COVERAGE_VIEW = PAGE_FOLDER + "/MediaCoverageView.jsp";
+
+	public String MEDIA_COVERAGE_LIST_VIEW = PAGE_FOLDER + "/MediaCoverageListView.jsp";
+
+	public String POLICY_VIEW = PAGE_FOLDER + "/PolicyView.jsp";
+
+	public String POLICY_LIST_VIEW = PAGE_FOLDER + "/PolicyListView.jsp";
+
+	// Controller Mapping
+
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
 
 	public String MARKSHEET_CTL = APP_CONTEXT + "/ctl/MarksheetCtl";
@@ -177,5 +195,21 @@ public interface ORSView {
 	public String INSURANCE_CTL = APP_CONTEXT + "/ctl/InsuranceCtl";
 
 	public String INSURANCE_LIST_CTL = APP_CONTEXT + "/ctl/InsuranceListCtl";
+
+	public String STOCK_CTL = APP_CONTEXT + "/ctl/StockCtl";
+
+	public String STOCK_LIST_CTL = APP_CONTEXT + "/ctl/StockListCtl";
+
+	public String LABTEST_CTL = APP_CONTEXT + "/ctl/LabTestCtl";
+
+	public String LABTEST_LIST_CTL = APP_CONTEXT + "/ctl/LabTestListCtl";
+
+	public String MEDIA_COVERAGE_CTL = APP_CONTEXT + "/ctl/MediaCoverageCtl";
+
+	public String MEDIA_COVERAGE_LIST_CTL = APP_CONTEXT + "/ctl/LabTestListCtl";
+
+	public String POLICY_CTL = APP_CONTEXT + "//ctl/PolicyCtl";
+
+	public String POLICY_LIST_CTL = APP_CONTEXT + "/ctl/PolicyListCtl";
 
 }

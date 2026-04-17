@@ -29,6 +29,54 @@ public final class ModelFactory {
 		return mFactory;
 	}
 
+	public PolicymodelInt getPolicyModel() {
+
+		PolicymodelInt PolicyModel = (PolicymodelInt) modelCache.get("PolicyModel");
+		if (PolicyModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				PolicyModel = new PolicyModelHibImpl();
+			}
+			modelCache.put("PolicyModel", PolicyModel);
+		}
+		return PolicyModel;
+	}
+
+	public MediaCoverageModelInt getMediaCoverageModel() {
+
+		MediaCoverageModelInt MediaCoverageModel = (MediaCoverageModelInt) modelCache.get("MediaCoverageModel");
+		if (MediaCoverageModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				MediaCoverageModel = new MediaCoverageModelImpl();
+			}
+			modelCache.put("MediaCoverageModel", MediaCoverageModel);
+		}
+		return MediaCoverageModel;
+	}
+
+	public LabTestModelInt getLabTestModel() {
+
+		LabTestModelInt LabTestModel = (LabTestModelInt) modelCache.get("LabTestModel");
+		if (LabTestModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				LabTestModel = new LabTestModelHibImpl();
+			}
+			modelCache.put("LabTestModel", LabTestModel);
+		}
+		return LabTestModel;
+	}
+
+	public StockModelInt getStockModel() {
+
+		StockModelInt StockModel = (StockModelInt) modelCache.get("StockModel");
+		if (StockModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				StockModel = new StockModelHibImpl();
+			}
+			modelCache.put("StockModel", StockModel);
+		}
+		return StockModel;
+	}
+
 	public InsuranceModelInt getInsuranceModel() {
 
 		InsuranceModelInt InsuranceModel = (InsuranceModelInt) modelCache.get("InsuranceModel");

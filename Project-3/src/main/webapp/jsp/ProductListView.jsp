@@ -116,10 +116,10 @@
 				<div class="col-sm-3">
 					<%
 						HashMap map = new HashMap();
-					map.put("Mobile ", "Mobile ");
-					map.put("Laptop", "Laptop");
-					map.put("SmartWatch", "SmartWatch");
-					map.put("Earbuds", "Earbuds");
+							map.put("Mobile ", "Mobile ");
+							map.put("Laptop", "Laptop");
+							map.put("SmartWatch", "SmartWatch");
+							map.put("Earbuds", "Earbuds");
 							String htmlList = HTMLUtility.getList("productCategory", dto.getProductCategory(), map);
 					%>
 					<%=htmlList%>
@@ -244,4 +244,4 @@
 
 </body>
 <%@include file="FooterView.jsp"%>
-</html>F
+</html>

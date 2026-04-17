@@ -14,6 +14,7 @@ import in.co.rays.project_3.model.UserModelInt;
 import in.co.rays.project_3.model.UserModelJDBCImpl;
 
 public class UserModelTest {
+	
 	public static UserModelInt model = new UserModelHibImp();
 	// public static UserModelInt model = new UserModelJDBCImpl();
 

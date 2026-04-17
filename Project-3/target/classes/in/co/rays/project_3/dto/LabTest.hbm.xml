@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="in.co.rays.project_3.dto">
+
+	<class name="LabTestDTO" table="ST_LAB_TEST">
+
+		<id name="labTestId" type="java.lang.Long">
+			<column name="LAB_TEST_ID" />
+			<generator class="increment" />
+		</id>
+
+		<property name="testName" type="java.lang.String">
+			<column name="TEST_NAME" />
+		</property>
+
+		<property name="cost" type="java.lang.Long">
+			<column name="COST" />
+		</property>
+
+		<property name="testDate" type="java.util.Date">
+			<column name="TEST_DATE" />
+		</property>
+
+	</class>
+
+</hibernate-mapping>

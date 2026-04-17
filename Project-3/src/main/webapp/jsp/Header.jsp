@@ -281,7 +281,7 @@
 					</div></li>
 
 				<li class="nav-item dropdown" style="padding-left: 5px"><a
-					class="nav-link dropdown-toggle" href="#" id="podcastDropdown"
+					class="nav-link dropdown-toggle" href="#" id="travelDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <font style="color: white;">Travel</font>
 				</a>
@@ -297,7 +297,7 @@
 					</div></li>
 
 				<li class="nav-item dropdown" style="padding-left: 5px"><a
-					class="nav-link dropdown-toggle" href="#" id="podcastDropdown"
+					class="nav-link dropdown-toggle" href="#" id="insuranceDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false"> <font style="color: white;">Insurance</font>
 				</a>
@@ -308,6 +308,72 @@
 							class="fa fa-truck"></i> Add Insurance
 						</a> <a class="dropdown-item" href="<%=ORSView.INSURANCE_LIST_CTL%>">
 							<i class="fa fa-list"></i> Insurance List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="stockDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Stock</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="stockDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.STOCK_CTL%>"> <i
+							class="fa fa-truck"></i> Add Stock
+						</a> <a class="dropdown-item" href="<%=ORSView.STOCK_LIST_CTL%>">
+							<i class="fa fa-list"></i> Stock List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="LabTestDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">LabTest</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="LabTestDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.LABTEST_CTL%>"> <i
+							class="fa fa-truck"></i> Add LabTest
+						</a> <a class="dropdown-item" href="<%=ORSView.LABTEST_LIST_CTL%>">
+							<i class="fa fa-list"></i> LabTest List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="MediaCoverageDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <font
+						style="color: white;">Media Coverage</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="LabTestDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.MEDIA_COVERAGE_CTL%>">
+							<i class="fa fa-truck"></i> Add Media Coverage
+						</a> <a class="dropdown-item"
+							href="<%=ORSView.MEDIA_COVERAGE_LIST_CTL%>"> <i
+							class="fa fa-list"></i> Media Coverage List
+						</a>
+
+					</div></li>
+
+				<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="PolicyDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Policy</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="LabTestDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.POLICY_CTL%>"> <i
+							class="fa fa-truck"></i> Add Policy
+						</a> <a class="dropdown-item" href="<%=ORSView.POLICY_LIST_CTL%>">
+							<i class="fa fa-list"></i>Policy List
 						</a>
 
 					</div></li>

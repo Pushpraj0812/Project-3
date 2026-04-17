@@ -114,7 +114,7 @@ public class ProductListCtl extends BaseCtl {
 
 		String[] ids = request.getParameterValues("ids");
 
-		ProductModelInt model = ModelFactory.getInstance().getProductModel();
+		ProductModelInt model = ModelFactory.getInstance().getProductModel(); 
 		try {
 
 			if (OP_SEARCH.equalsIgnoreCase(op) || "Next".equalsIgnoreCase(op) || "Previous".equalsIgnoreCase(op)) {
