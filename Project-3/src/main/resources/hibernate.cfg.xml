@@ -17,7 +17,7 @@
 
 	<session-factory>
 
-		<!-- For eclipse <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> -->
+		 <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property> 
 
 		<!-- For docker -->
 		<property name="hibernate.connection.url">jdbc:mysql://ORS_Project3-mysql:3306/project_3</property>
