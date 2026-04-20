@@ -15,6 +15,7 @@ import in.co.rays.project_3.util.HibDataSource;
 
 /**
  * Hibernate implements of college model
+ * 
  * @author Pushpraj Singh Kachhaway
  *
  */
@@ -38,6 +39,7 @@ public class CollegeModelHibImp implements CollegeModelInt {
 				tx.rollback();
 
 			}
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in college Add " + e.getMessage());
 		} finally {
 			session.close();
@@ -78,7 +80,7 @@ public class CollegeModelHibImp implements CollegeModelInt {
 		try {
 			session = HibDataSource.getSession();
 			tx = session.beginTransaction();
-			
+
 			session.saveOrUpdate(dto);
 			tx.commit();
 
@@ -112,8 +114,8 @@ public class CollegeModelHibImp implements CollegeModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in  College list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  College list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -122,7 +124,7 @@ public class CollegeModelHibImp implements CollegeModelInt {
 	}
 
 	public List search(CollegeDTO dto) throws ApplicationException {
-				return search(dto, 0, 0);
+		return search(dto, 0, 0);
 	}
 
 	public List search(CollegeDTO dto, int pageNo, int pageSize) throws ApplicationException {
@@ -135,30 +137,31 @@ public class CollegeModelHibImp implements CollegeModelInt {
 				criteria.add(Restrictions.eq("id", dto.getId()));
 
 			}
-			if(dto.getName()!=null&&dto.getName().length()>0){
-				criteria.add(Restrictions.like("name", dto.getName()+"%"));
+			if (dto.getName() != null && dto.getName().length() > 0) {
+				criteria.add(Restrictions.like("name", dto.getName() + "%"));
 			}
-			if(dto.getAddress()!=null&&dto.getAddress().length()>0){
-				criteria.add(Restrictions.like("address", dto.getAddress()+"%"));
+			if (dto.getAddress() != null && dto.getAddress().length() > 0) {
+				criteria.add(Restrictions.like("address", dto.getAddress() + "%"));
 			}
-			if(dto.getState()!=null&&dto.getState().length()>0){
-				criteria.add(Restrictions.like("state", dto.getState()+"%"));
+			if (dto.getState() != null && dto.getState().length() > 0) {
+				criteria.add(Restrictions.like("state", dto.getState() + "%"));
 			}
-			if(dto.getCity()!=null&&dto.getCity().length()>0){
-				criteria.add(Restrictions.like("city", dto.getCity()+"%"));
+			if (dto.getCity() != null && dto.getCity().length() > 0) {
+				criteria.add(Restrictions.like("city", dto.getCity() + "%"));
 			}
-			if(pageSize>0){
-				criteria.setFirstResult((pageNo-1)*pageSize);
+			if (pageSize > 0) {
+				criteria.setFirstResult((pageNo - 1) * pageSize);
 				criteria.setMaxResults(pageSize);
-				
+
 			}
-              list=criteria.list();
-		}catch (HibernateException e) {
-           e.printStackTrace();
-            throw new ApplicationException("Exception in college search");
-        } finally {
-            session.close();
-        }
+			list = criteria.list();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in college search" + e.getMessage());
+		} finally {
+			session.close();
+		}
 		return list;
 	}
 
@@ -172,8 +175,8 @@ public class CollegeModelHibImp implements CollegeModelInt {
 			dto = (CollegeDTO) session.get(CollegeDTO.class, pk);
 			System.out.println(dto);
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in getting course by pk");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in getting course by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -181,24 +184,23 @@ public class CollegeModelHibImp implements CollegeModelInt {
 	}
 
 	public CollegeDTO fingByName(String name) throws ApplicationException {
-		Session session=null;
-		CollegeDTO dto=null;
+		Session session = null;
+		CollegeDTO dto = null;
 		try {
-			session=HibDataSource.getSession();
-			Criteria criteria=session.createCriteria(CollegeDTO.class);
+			session = HibDataSource.getSession();
+			Criteria criteria = session.createCriteria(CollegeDTO.class);
 			criteria.add(Restrictions.eq("name", name));
-			List list=criteria.list();
-			if(list.size()==1){
-				dto=(CollegeDTO) list.get(0);
+			List list = criteria.list();
+			if (list.size() == 1) {
+				dto = (CollegeDTO) list.get(0);
 			}
 		} catch (HibernateException e) {
-            
-            throw new ApplicationException(
-                    "Exception in getting User by Login " + e.getMessage());
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in getting College by Name " + e.getMessage() + e.getMessage());
 
-        } finally {
-            session.close();
-        }
+		} finally {
+			session.close();
+		}
 		return dto;
 	}
 

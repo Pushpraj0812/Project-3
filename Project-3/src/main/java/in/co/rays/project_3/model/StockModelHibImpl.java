@@ -93,7 +93,7 @@ public class StockModelHibImpl implements StockModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting StockDTO by pk");
+			throw new ApplicationException("Exception : Exception in getting StockDTO by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -145,7 +145,8 @@ public class StockModelHibImpl implements StockModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Stock list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  Stock list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -186,7 +187,8 @@ public class StockModelHibImpl implements StockModelInt {
 			}
 			list = (ArrayList<StockDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in StockDTO search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in StockDTO search" + e.getMessage());
 		} finally {
 			session.close();
 		}

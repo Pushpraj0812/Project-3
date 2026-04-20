@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,20 +41,16 @@ public class UserCtl extends BaseCtl {
 		log.debug("UserCtl preload start");
 
 		RoleModelInt model = ModelFactory.getInstance().getRoleModel();
-
+		List list = null;
 		try {
-			List list = model.list();
-			Iterator it = list.iterator();
-
-			while (it.hasNext()) {
-				RoleDTO dto = (RoleDTO) it.next();
-			}
-
-			request.setAttribute("roleList", list);
-
+			list = model.list();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		if (list == null) {
+			list = new ArrayList();
+		}
+		request.setAttribute("roleList", list);
 		log.debug("UserCtl preload end");
 	}
 

@@ -97,7 +97,7 @@ public class DispatchModelHibImpl implements DispatchModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting User by pk");
+			throw new ApplicationException("Exception : Exception in getting User by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -124,6 +124,7 @@ public class DispatchModelHibImpl implements DispatchModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting status" + e.getMessage());
 
 		} finally {
@@ -170,7 +171,8 @@ public class DispatchModelHibImpl implements DispatchModelInt {
 			}
 			list = (ArrayList<DispatchDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in user search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in dispatch search" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -195,7 +197,8 @@ public class DispatchModelHibImpl implements DispatchModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Users list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  Users list" + e.getMessage());
 		} finally {
 			session.close();
 		}

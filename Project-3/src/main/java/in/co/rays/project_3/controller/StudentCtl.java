@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -30,21 +31,26 @@ import in.co.rays.project_3.util.ServletUtility;
  */
 @WebServlet(urlPatterns = { "/ctl/StudentCtl" })
 public class StudentCtl extends BaseCtl {
-	
+
 	private static Logger log = Logger.getLogger(StudentCtl.class);
 
 	@Override
 	protected void preload(HttpServletRequest request) {
-		
+
 		log.debug("RoleListCtl preload start");
 
 		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
+		List l = null;
 		try {
-			List l = model.list();
-			request.setAttribute("collegeList", l);
+			l = model.list();
+
 		} catch (ApplicationException e) {
 			log.error(e);
 		}
+		if (l == null) {
+			l = new ArrayList();
+		}
+		request.setAttribute("collegeList", l);
 		log.debug("RoleListCtl preload end");
 	}
 
@@ -211,7 +217,8 @@ public class StudentCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setDto(dto, request);
@@ -230,7 +237,8 @@ public class StudentCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 

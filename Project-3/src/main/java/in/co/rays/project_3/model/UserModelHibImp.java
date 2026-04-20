@@ -116,7 +116,7 @@ public class UserModelHibImp implements UserModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting User by pk");
+			throw new ApplicationException("Exception : Exception in getting User by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -142,6 +142,7 @@ public class UserModelHibImp implements UserModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting User by Login " + e.getMessage());
 
 		} finally {
@@ -172,7 +173,8 @@ public class UserModelHibImp implements UserModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Users list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  Users list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -225,7 +227,8 @@ public class UserModelHibImp implements UserModelInt {
 			}
 			list = (ArrayList<UserDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in user search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in user search" + e.getMessage());
 		} finally {
 			session.close();
 		}

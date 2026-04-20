@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -35,23 +36,27 @@ public class SubjectCtl extends BaseCtl {
 	private static Logger log = Logger.getLogger(SubjectCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-		
+
 		log.debug("StudentListCtl preload start");
 
 		CourseModelInt model = ModelFactory.getInstance().getCourseModel();
-
+		List list = null;
 		try {
-			List list = model.list();
-			request.setAttribute("courseList", list);
+			list = model.list();
+
 		} catch (Exception e) {
 			log.error(e);
 			e.printStackTrace();
 		}
+		if (list == null) {
+			list = new ArrayList();
+		}
+		request.setAttribute("courseList", list);
 		log.debug("StudentListCtl preload end");
 	}
 
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("coursectl validate start");
 
 		boolean pass = true;
@@ -88,7 +93,7 @@ public class SubjectCtl extends BaseCtl {
 		dto.setSubjectName(DataUtility.getString(request.getParameter("subjectName")));
 		dto.setDescription(DataUtility.getString(request.getParameter("description")));
 		populateBean(dto, request);
-		
+
 		log.debug("coursectl populate bean end");
 
 		return dto;
@@ -155,7 +160,8 @@ public class SubjectCtl extends BaseCtl {
 						ServletUtility.setSuccessMessage("Data in successfully saved", request);
 					} catch (ApplicationException e) {
 						log.error(e);
-						ServletUtility.handleException(e, request, response);
+						ServletUtility.setErrorMessage(e.getMessage(), request);
+						ServletUtility.forward(getView(), request, response);
 						return;
 					} catch (DuplicateRecordException e) {
 						ServletUtility.setDto(dto, request);
@@ -167,7 +173,8 @@ public class SubjectCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			} catch (Exception e) {
 				ServletUtility.setDto(dto, request);
@@ -180,7 +187,8 @@ public class SubjectCtl extends BaseCtl {
 				ServletUtility.redirect(getView(), request, response);
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 		} else if (OP_RESET.equalsIgnoreCase(op)) {

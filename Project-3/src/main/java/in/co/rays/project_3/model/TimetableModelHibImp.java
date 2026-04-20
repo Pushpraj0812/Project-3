@@ -26,7 +26,7 @@ import in.co.rays.project_3.util.HibDataSource;
 public class TimetableModelHibImp implements TimetableModelInt {
 
 	public long add(TimetableDTO dto) throws ApplicationException, DuplicateRecordException {
-		// TODO Auto-generated method stub
+
 		CourseModelInt Cmodel = ModelFactory.getInstance().getCourseModel();
 		CourseDTO Cbean = null;
 		Cbean = Cmodel.findByPK(dto.getCourseId());
@@ -48,10 +48,10 @@ public class TimetableModelHibImp implements TimetableModelInt {
 			tx.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			// TODO: handle exception
 			if (tx != null) {
 				tx.rollback();
 			}
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in timetable Add " + e.getMessage());
 		} finally {
 			session.close();
@@ -133,8 +133,8 @@ public class TimetableModelHibImp implements TimetableModelInt {
 			}
 			list = criteria.list();
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in  TimetableDTO list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  TimetableDTO list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -182,8 +182,8 @@ public class TimetableModelHibImp implements TimetableModelInt {
 			}
 			list = criteria.list();
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception in course search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in course search" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -199,8 +199,8 @@ public class TimetableModelHibImp implements TimetableModelInt {
 
 			dto = (TimetableDTO) session.get(TimetableDTO.class, pk);
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -224,8 +224,8 @@ public class TimetableModelHibImp implements TimetableModelInt {
 				dto = (TimetableDTO) list.get(0);
 			}
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -254,8 +254,8 @@ public class TimetableModelHibImp implements TimetableModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
-
-			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -285,8 +285,8 @@ public class TimetableModelHibImp implements TimetableModelInt {
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
-
-			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in getting TimetableDTO by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}

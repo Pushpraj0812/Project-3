@@ -24,7 +24,7 @@ import in.co.rays.project_3.util.HibDataSource;
 public class MarksheetModelHibImp implements MarksheetModelInt {
 
 	public long add(MarksheetDTO dto) throws ApplicationException, DuplicateRecordException {
-		
+
 		Session session = HibDataSource.getSession();
 		Transaction tx = null;
 
@@ -51,6 +51,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 			if (tx != null) {
 				tx.rollback();
 			}
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in marksheet Add " + e.getMessage());
 		} finally {
 			session.close();
@@ -59,7 +60,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public void delete(MarksheetDTO dto) throws ApplicationException {
-		
+
 		Session session = null;
 		Transaction tx = null;
 		MarksheetDTO dtoExist = fingByPK(dto.getId());
@@ -85,18 +86,9 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public void update(MarksheetDTO dto) throws ApplicationException, DuplicateRecordException {
-		
+
 		Session session = null;
 		Transaction tx = null;
-
-		// MarksheetDTO dtoExist = findByRollNo(dto.getRollNo());
-
-		// Check if updated Roll no already exist
-
-		/*
-		 * if (dtoExist != null && dtoExist.getId() == dto.getId()) { throw new
-		 * DuplicateRecordException("Roll No is already exist"); }
-		 */
 
 		// get Student Name
 		StudentModelInt sModel = ModelFactory.getInstance().getStudentModel();
@@ -123,12 +115,12 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public List list() throws ApplicationException {
-		
+
 		return list(0, 0);
 	}
 
 	public List list(int pageNo, int pageSize) throws ApplicationException {
-		
+
 		Session session = null;
 		List list = null;
 		try {
@@ -136,15 +128,15 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 			Criteria criteria = session.createCriteria(MarksheetDTO.class);
 			if (pageSize > 0) {
 
-				pageNo = ((pageNo - 1) * pageSize) + 1;
+				pageNo = (pageNo - 1) * pageSize;
 
 				criteria.setFirstResult(pageNo);
 				criteria.setMaxResults(pageSize);
 			}
 			list = criteria.list();
 
-		} catch (Exception e) {
-
+		} catch (HibernateException e) {
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in  Marksheet List" + e.getMessage());
 		} finally {
 			session.close();
@@ -153,12 +145,12 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public List search(MarksheetDTO dto) throws ApplicationException {
-		
+
 		return search(dto, 0, 0);
 	}
 
 	public List search(MarksheetDTO dto, int pageNo, int pageSize) throws ApplicationException {
-		
+
 		Session session = null;
 		List list = null;
 		try {
@@ -188,8 +180,9 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 				criteria.setMaxResults(pageSize);
 			}
 			list = criteria.list();
-		} catch (Exception e) {
+		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in Marksheet Search " + e.getMessage());
 		} finally {
 			session.close();
@@ -198,15 +191,15 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public MarksheetDTO fingByPK(long pk) throws ApplicationException {
-		
+
 		Session session = null;
 		MarksheetDTO dto = null;
 		try {
 			session = HibDataSource.getSession();
 			dto = (MarksheetDTO) session.get(MarksheetDTO.class, pk);
 
-		} catch (Exception e) {
-
+		} catch (HibernateException e) {
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting Marksheet by pk" + e.getMessage());
 
 		} finally {
@@ -216,7 +209,7 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 	}
 
 	public MarksheetDTO findByRollNo(String rollNo) throws ApplicationException {
-		
+
 		Session session = null;
 		MarksheetDTO dto = null;
 		try {
@@ -228,8 +221,8 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 				dto = (MarksheetDTO) list.get(0);
 
 			}
-		} catch (Exception e) {
-
+		} catch (HibernateException e) {
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting Marksheet by pk" + e.getMessage());
 
 		} finally {
@@ -255,8 +248,8 @@ public class MarksheetModelHibImp implements MarksheetModelInt {
 			Query query = session.createQuery(hql.toString()).setMaxResults(pageSize);
 			list = query.list();
 
-		} catch (Exception e) {
-
+		} catch (HibernateException e) {
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in  marksheet list" + e.getMessage());
 		} finally {
 			session.close();

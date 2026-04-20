@@ -158,9 +158,9 @@ public class CollegeCtl extends BaseCtl {
 				ServletUtility.setDto(dto, request);
 
 			} catch (ApplicationException e) {
-				e.printStackTrace();
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 
 			} catch (DuplicateRecordException e) {
@@ -188,5 +188,4 @@ public class CollegeCtl extends BaseCtl {
 
 		return ORSView.COLLEGE_VIEW;
 	}
-
 }

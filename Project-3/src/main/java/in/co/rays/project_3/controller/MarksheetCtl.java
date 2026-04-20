@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -34,32 +35,37 @@ import in.co.rays.project_3.util.ServletUtility;
 public class MarksheetCtl extends BaseCtl {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private static Logger log = Logger.getLogger(MarksheetCtl.class);
 
 	protected void preload(HttpServletRequest request) {
-		
+
 		log.debug("MarksheetCtl preload method start");
-		
+
 		StudentModelInt model = ModelFactory.getInstance().getStudentModel();
+
+		List li = null;
+
 		try {
-			List li = model.list();
-			request.setAttribute("studenList", li);
-			System.out.println("add marksheet" + li);
+			li = model.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			log.error(e);
 		}
+		if (li == null) {
+			li = new ArrayList();
+		}
+		request.setAttribute("studentList", li);
 		log.debug("MarksheetCtl preload method end");
 	}
 
 	protected boolean validate(HttpServletRequest request) {
-		
+
 		log.debug("MarksheetCtl validate start");
-		
+
 		boolean pass = true;
-		
+
 		String id = request.getParameter("studentId");
 		if (DataValidator.isNull(request.getParameter("roll"))) {
 			request.setAttribute("roll", PropertyReader.getValue("error.require", "Roll No"));
@@ -124,11 +130,11 @@ public class MarksheetCtl extends BaseCtl {
 	}
 
 	protected BaseDTO populateDTO(HttpServletRequest request) {
-		
+
 		log.debug("MarksheetCtl populateDTO start");
-		
+
 		MarksheetDTO dto = new MarksheetDTO();
-		
+
 		String id = request.getParameter("studentId");
 		String id1 = id.trim();
 		dto.setRollNo(request.getParameter("roll"));
@@ -140,7 +146,7 @@ public class MarksheetCtl extends BaseCtl {
 		dto.setMaths(DataUtility.getInt(request.getParameter("maths")));
 
 		populateBean(dto, request);
-		
+
 		log.debug("MarksheetCtl populate bean end");
 		return dto;
 
@@ -152,13 +158,13 @@ public class MarksheetCtl extends BaseCtl {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("MarksheetCtl doget  start");
-		
+
 		long id = DataUtility.getLong(request.getParameter("id"));
-		
+
 		MarksheetModelInt model = ModelFactory.getInstance().getMarksheetModel();
-		
+
 		if (id > 0) {
 			MarksheetDTO dto;
 			try {
@@ -180,7 +186,7 @@ public class MarksheetCtl extends BaseCtl {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
-		
+
 		log.debug("MarksheetCtl dopost  start");
 
 		String op = DataUtility.getString(request.getParameter("operation"));
@@ -203,7 +209,8 @@ public class MarksheetCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			} catch (DuplicateRecordException e) {
 				ServletUtility.setDto(dto, request);
@@ -217,9 +224,9 @@ public class MarksheetCtl extends BaseCtl {
 				ServletUtility.redirect(ORSView.MARKSHEET_LIST_CTL, request, response);
 				return;
 			} catch (ApplicationException e) {
-				System.out.println("in catch");
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 
@@ -237,8 +244,7 @@ public class MarksheetCtl extends BaseCtl {
 
 	@Override
 	protected String getView() {
-		
+
 		return ORSView.MARKSHEET_VIEW;
 	}
-
 }

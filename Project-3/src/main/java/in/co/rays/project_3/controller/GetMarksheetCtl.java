@@ -109,8 +109,9 @@ public class GetMarksheetCtl extends BaseCtl {
 				}
 			} catch (ApplicationException e) {
 				e.printStackTrace();
-				log.equals(e);
-				ServletUtility.handleException(e, request, response);
+				log.error(e);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 		}

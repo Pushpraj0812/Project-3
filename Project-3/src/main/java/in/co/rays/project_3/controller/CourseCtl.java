@@ -101,7 +101,7 @@ public class CourseCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("CourseCtl doget end");
 	}
 
@@ -138,7 +138,8 @@ public class CourseCtl extends BaseCtl {
 						ServletUtility.setDto(dto, request);
 					} catch (ApplicationException e) {
 						log.error(e);
-						ServletUtility.handleException(e, request, response);
+						ServletUtility.setErrorMessage(e.getMessage(), request);
+						ServletUtility.forward(getView(), request, response);
 						return;
 					} catch (DuplicateRecordException e) {
 						ServletUtility.setDto(dto, request);
@@ -148,7 +149,8 @@ public class CourseCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			} catch (Exception e) {
 				ServletUtility.setDto(dto, request);

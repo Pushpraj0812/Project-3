@@ -123,7 +123,8 @@ public class MarksheetMeritListCtl extends BaseCtl {
 
 		} catch (ApplicationException e) {
 			log.error(e);
-			ServletUtility.handleException(e, request, response);
+			ServletUtility.setErrorMessage(e.getMessage(), request);
+			ServletUtility.forward(getView(), request, response);
 			return;
 		}
 		log.debug("MarksheetMeritListCtl dopost end");

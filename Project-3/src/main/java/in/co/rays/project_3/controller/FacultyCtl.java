@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,25 +38,39 @@ public class FacultyCtl extends BaseCtl {
 
 	@Override
 	protected void preload(HttpServletRequest request) {
-		
-		log.debug("FacultyCtl preload start");
-		
-		try {
-			CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
-			CourseModelInt model1 = ModelFactory.getInstance().getCourseModel();
-			SubjectModelInt model2 = ModelFactory.getInstance().getSubjectModel();
 
-			List l = model.list();
-			List li = model1.list();
-			List list = model2.list();
-			request.setAttribute("collegeList", l);
-			request.setAttribute("courseList", li);
-			request.setAttribute("subjectList", list);
+		log.debug("FacultyCtl preload start");
+
+		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
+		CourseModelInt model1 = ModelFactory.getInstance().getCourseModel();
+		SubjectModelInt model2 = ModelFactory.getInstance().getSubjectModel();
+
+		List l = null;
+		List li = null;
+		List list = null;
+
+		try {
+
+			l = model.list();
+			li = model1.list();
+			list = model2.list();
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		if (l == null) {
+			l = new ArrayList();
+		}
+		if (li == null) {
+			li = new ArrayList();
+		}
+		if (list == null) {
+			list = new ArrayList();
+		}
+		request.setAttribute("collegeList", l);
+		request.setAttribute("courseList", li);
+		request.setAttribute("subjectList", list);
+
 		log.debug("FacultyCtl preload end");
 
 	}
@@ -160,9 +175,9 @@ public class FacultyCtl extends BaseCtl {
 		dto.setCourseId(DataUtility.getLong(request.getParameter("courseId")));
 		dto.setSubjectId(DataUtility.getLong(request.getParameter("subjectId")));
 		populateBean(dto, request);
-		
+
 		log.debug("FacultyCtl populateDTO start");
-		
+
 		return dto;
 
 	}
@@ -197,7 +212,7 @@ public class FacultyCtl extends BaseCtl {
 		ServletUtility.forward(getView(), request, response);
 
 		log.debug("FacultyCtl doget end");
-		
+
 	}
 
 	/**
@@ -228,7 +243,8 @@ public class FacultyCtl extends BaseCtl {
 						ServletUtility.setSuccessMessage("Data is successfully saved", request);
 					} catch (ApplicationException e) {
 						log.error(e);
-						ServletUtility.handleException(e, request, response);
+						ServletUtility.setErrorMessage(e.getMessage(), request);
+						ServletUtility.forward(getView(), request, response);
 						return;
 					} catch (DuplicateRecordException e) {
 						ServletUtility.setDto(dto, request);
@@ -240,7 +256,8 @@ public class FacultyCtl extends BaseCtl {
 
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 
 			} catch (Exception e) {
@@ -270,7 +287,7 @@ public class FacultyCtl extends BaseCtl {
 		}
 
 		ServletUtility.forward(getView(), request, response);
-		
+
 		log.debug("FacultyCtl dopost end");
 	}
 

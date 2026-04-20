@@ -15,6 +15,7 @@ import in.co.rays.project_3.util.HibDataSource;
 
 /**
  * Hibernate implements of course model
+ * 
  * @author Pushpraj Singh Kachhaway
  *
  */
@@ -37,11 +38,11 @@ public class CourseModelHibImp implements CourseModelInt {
 			tx.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			// TODO: handle exception
 			if (tx != null) {
 				tx.rollback();
 
 			}
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in course Add " + e.getMessage());
 		} finally {
 			session.close();
@@ -96,7 +97,7 @@ public class CourseModelHibImp implements CourseModelInt {
 	}
 
 	public CourseDTO findByPK(long pk) throws ApplicationException {
-		
+
 		Session session = null;
 		CourseDTO dto = null;
 		try {
@@ -104,8 +105,8 @@ public class CourseModelHibImp implements CourseModelInt {
 
 			dto = (CourseDTO) session.get(CourseDTO.class, pk);
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in getting course by pk");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in getting course by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -125,7 +126,7 @@ public class CourseModelHibImp implements CourseModelInt {
 				dto = (CourseDTO) list.get(0);
 			}
 		} catch (HibernateException e) {
-
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting User by Login " + e.getMessage());
 
 		} finally {
@@ -153,8 +154,8 @@ public class CourseModelHibImp implements CourseModelInt {
 			}
 			list = criteria.list();
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception : Exception in  course list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  course list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -168,43 +169,40 @@ public class CourseModelHibImp implements CourseModelInt {
 
 	public List search(CourseDTO dto, int pageNo, int pageSize) throws ApplicationException {
 		// TODO Auto-generated method stub
-		  Session session = null;
-	        List list = null;
-	        try {
-	            session = HibDataSource.getSession();
-	            Criteria criteria = session.createCriteria(CourseDTO.class);
+		Session session = null;
+		List list = null;
+		try {
+			session = HibDataSource.getSession();
+			Criteria criteria = session.createCriteria(CourseDTO.class);
 
-	            if (dto.getId() > 0) {
-	                criteria.add(Restrictions.eq("id", dto.getId()));
-	            }
-	            if (dto.getCourseName() != null && dto.getCourseName().length() > 0) {
-	                criteria.add(Restrictions.like("courseName", dto.getCourseName() + "%"));
-	            }
-	            if (dto.getDuration() != null && dto.getDuration().length() > 0) {
-	                criteria.add(Restrictions.like("duration", dto.getDuration()
-	                        + "%"));
-	            }
-	            if (dto.getDescription() != null && dto.getDescription().length() > 0) {
-	                criteria.add(Restrictions.like("description", dto.getDescription() + "%"));
-	            }
-	            
+			if (dto.getId() > 0) {
+				criteria.add(Restrictions.eq("id", dto.getId()));
+			}
+			if (dto.getCourseName() != null && dto.getCourseName().length() > 0) {
+				criteria.add(Restrictions.like("courseName", dto.getCourseName() + "%"));
+			}
+			if (dto.getDuration() != null && dto.getDuration().length() > 0) {
+				criteria.add(Restrictions.like("duration", dto.getDuration() + "%"));
+			}
+			if (dto.getDescription() != null && dto.getDescription().length() > 0) {
+				criteria.add(Restrictions.like("description", dto.getDescription() + "%"));
+			}
 
-	            // if page size is greater than zero the apply pagination
-	            if (pageSize > 0) {
-	                criteria.setFirstResult(((pageNo - 1) * pageSize));
-	                criteria.setMaxResults(pageSize);
-	            }
+			// if page size is greater than zero the apply pagination
+			if (pageSize > 0) {
+				criteria.setFirstResult(((pageNo - 1) * pageSize));
+				criteria.setMaxResults(pageSize);
+			}
 
-	            list = criteria.list();
-	        } catch (HibernateException e) {
-	            
-	            throw new ApplicationException("Exception in course search");
-	        } finally {
-	            session.close();
-	        }
+			list = criteria.list();
+		} catch (HibernateException e) {
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in course search" + e.getMessage());
+		} finally {
+			session.close();
+		}
 
-	       
-	        return list;
+		return list;
 	}
 
 }

@@ -9,6 +9,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
+import in.co.rays.project_3.controller.GetMarksheetCtl;
 import in.co.rays.project_3.dto.TravelDTO;
 import in.co.rays.project_3.dto.UserDTO;
 import in.co.rays.project_3.exception.ApplicationException;
@@ -95,7 +96,7 @@ public class TravelModelHibImpl implements TravelModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting Travel by pk");
+			throw new ApplicationException("Exception : Exception in getting Travel by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -121,6 +122,7 @@ public class TravelModelHibImpl implements TravelModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting Travel by traveler_Name " + e.getMessage());
 
 		} finally {
@@ -147,7 +149,8 @@ public class TravelModelHibImpl implements TravelModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Travel list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  Travel list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -192,7 +195,8 @@ public class TravelModelHibImpl implements TravelModelInt {
 			}
 			list = (ArrayList<TravelDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in travel search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in travel search" + e.getMessage());
 		} finally {
 			session.close();
 		}

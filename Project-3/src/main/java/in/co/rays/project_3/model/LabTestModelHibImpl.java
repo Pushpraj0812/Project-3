@@ -92,7 +92,7 @@ public class LabTestModelHibImpl implements LabTestModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting LabTest by pk");
+			throw new ApplicationException("Exception : Exception in getting LabTest by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -118,6 +118,7 @@ public class LabTestModelHibImpl implements LabTestModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting LabTest by Login " + e.getMessage());
 
 		} finally {
@@ -144,7 +145,8 @@ public class LabTestModelHibImpl implements LabTestModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  LabTest list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  LabTest list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -184,7 +186,8 @@ public class LabTestModelHibImpl implements LabTestModelInt {
 			}
 			list = (ArrayList<LabTestDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in LabTest search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in LabTest search" + e.getMessage());
 		} finally {
 			session.close();
 		}

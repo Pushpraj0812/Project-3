@@ -176,8 +176,9 @@ public class UserRegistrationCtl extends BaseCtl {
 				ServletUtility.forward(getView(), request, response);
 
 			} catch (ApplicationException e) {
-
-				ServletUtility.handleException(e, request, response);
+				log.error(e);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 			ServletUtility.setSuccessMessage("Registration successfully", request);

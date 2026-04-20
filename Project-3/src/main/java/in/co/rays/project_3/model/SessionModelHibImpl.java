@@ -36,7 +36,7 @@ public class SessionModelHibImpl implements SessionModelInt {
 
 			}
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception in User Add " + e.getMessage());
+			throw new ApplicationException("Exception in session Add " + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -57,7 +57,7 @@ public class SessionModelHibImpl implements SessionModelInt {
 			if (tx != null) {
 				tx.rollback();
 			}
-			throw new ApplicationException("Exception in User Delete" + e.getMessage());
+			throw new ApplicationException("Exception in session Delete" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -82,7 +82,7 @@ public class SessionModelHibImpl implements SessionModelInt {
 			if (tx != null) {
 				tx.rollback();
 			}
-			throw new ApplicationException("Exception in User update" + e.getMessage());
+			throw new ApplicationException("Exception in session update" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -98,7 +98,7 @@ public class SessionModelHibImpl implements SessionModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting User by pk");
+			throw new ApplicationException("Exception : Exception in getting session by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -123,7 +123,8 @@ public class SessionModelHibImpl implements SessionModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Users list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  session list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -171,7 +172,8 @@ public class SessionModelHibImpl implements SessionModelInt {
 			}
 			list = (ArrayList<SessionDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in user search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in session search" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -189,7 +191,7 @@ public class SessionModelHibImpl implements SessionModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting User by pk");
+			throw new ApplicationException("Exception : Exception in getting session by id" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -199,31 +201,32 @@ public class SessionModelHibImpl implements SessionModelInt {
 
 	@Override
 	public void logout(long sessionId) throws ApplicationException {
-		
-		 Session session = HibDataSource.getSession();
-		    Transaction tx = null;
 
-		    try {
-		        tx = session.beginTransaction();
+		Session session = HibDataSource.getSession();
+		Transaction tx = null;
 
-		        SessionDTO dto = (SessionDTO) session.get(SessionDTO.class, sessionId);
+		try {
+			tx = session.beginTransaction();
 
-		        if (dto != null) {
-		            dto.setLogoutTime(LocalDateTime.now()); 
-		            dto.setSessionStatus("INACTIVE");
-		            session.update(dto);
-		        }
+			SessionDTO dto = (SessionDTO) session.get(SessionDTO.class, sessionId);
 
-		        tx.commit();
+			if (dto != null) {
+				dto.setLogoutTime(LocalDateTime.now());
+				dto.setSessionStatus("INACTIVE");
+				session.update(dto);
+			}
 
-		    } catch (HibernateException e) {
-		        if (tx != null) tx.rollback();
-		        throw new ApplicationException("Error while logout session");
+			tx.commit();
 
-		    } finally {
-		        session.close();
-		    }
-		
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Error while logout session" + e.getMessage());
+		} finally {
+			session.close();
+		}
+
 	}
 
 }

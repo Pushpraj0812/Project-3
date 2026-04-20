@@ -36,7 +36,7 @@ public class TransportModelHibImpl implements TransportModelInt {
 
 			}
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception in User Add " + e.getMessage());
+			throw new ApplicationException("Exception in transport Add " + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -90,7 +90,7 @@ public class TransportModelHibImpl implements TransportModelInt {
 			dto = (TransportDTO) session.get(TransportDTO.class, pk);
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting User by pk");
+			throw new ApplicationException("Exception : Exception in getting transport by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -116,7 +116,8 @@ public class TransportModelHibImpl implements TransportModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
-			throw new ApplicationException("Exception in getting  driverName " + e.getMessage());
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in getting driver Name " + e.getMessage());
 
 		} finally {
 			session.close();
@@ -142,7 +143,8 @@ public class TransportModelHibImpl implements TransportModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Transport list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  Transport list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -190,7 +192,8 @@ public class TransportModelHibImpl implements TransportModelInt {
 			}
 			list = (ArrayList<TransportDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in user search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in transport search" + e.getMessage());
 		} finally {
 			session.close();
 		}

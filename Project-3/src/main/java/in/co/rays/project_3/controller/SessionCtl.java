@@ -139,6 +139,8 @@ public class SessionCtl extends BaseCtl {
 			} catch (ApplicationException e) {
 				log.error(e);
 				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
+				return;
 			}
 
 		} else if (OP_CANCEL.equalsIgnoreCase(op)) {

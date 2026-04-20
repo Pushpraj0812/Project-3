@@ -1,6 +1,7 @@
 package in.co.rays.project_3.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -41,17 +42,25 @@ public class TimeTableCtl extends BaseCtl {
 		CourseModelInt model = ModelFactory.getInstance().getCourseModel();
 
 		SubjectModelInt model1 = ModelFactory.getInstance().getSubjectModel();
+		
+		List l =null;
+		List l1 = null;
 
 		try {
-			List l = model.list();
-			List l1 = model1.list();
-
-			request.setAttribute("courseList", l);
-			request.setAttribute("subjectList", l1);
+			 l = model.list();
+			 l1 = model1.list();
 
 		} catch (Exception e) {
 			log.error(e);
 		}
+		if (l == null) {
+			l = new ArrayList();
+		}
+		if (l1 == null) {
+			l1 = new ArrayList();
+		}
+		request.setAttribute("courseList", l);
+		request.setAttribute("subjectList", l1);
 		log.debug("TimeTableCtl preload end");
 	}
 
@@ -169,12 +178,6 @@ public class TimeTableCtl extends BaseCtl {
 					ServletUtility.setSuccessMessage("Data is successfully Update", request);
 				} else {
 					try {
-						/*
-						 * dto1 = model.checkByCourseName(dto.getCourseId(), dto.getExamDate()); dto2 =
-						 * model.checkBySubjectName(dto.getCourseId(), dto.getSubId(),
-						 * dto.getExamDate()); dto3 = model.checkBysemester(dto.getCourseId(),
-						 * dto.getSubId(), dto.getSemester(), dto.getExamDate());
-						 */
 						if (dto1 == null || dto2 == null || dto3 == null) {
 							model.add(dto);
 							ServletUtility.setDto(dto, request);
@@ -185,8 +188,11 @@ public class TimeTableCtl extends BaseCtl {
 
 						}
 					} catch (Exception e) {
-
 						e.printStackTrace();
+						log.error(e);
+						ServletUtility.setErrorMessage(e.getMessage(), request);
+						ServletUtility.forward(getView(), request, response);
+						return;
 					}
 
 				}
@@ -204,7 +210,8 @@ public class TimeTableCtl extends BaseCtl {
 				return;
 			} catch (ApplicationException e) {
 				log.error(e);
-				ServletUtility.handleException(e, request, response);
+				ServletUtility.setErrorMessage(e.getMessage(), request);
+				ServletUtility.forward(getView(), request, response);
 				return;
 			}
 

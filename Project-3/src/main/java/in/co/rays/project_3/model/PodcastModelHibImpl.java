@@ -96,7 +96,7 @@ public class PodcastModelHibImpl implements PodcastModelInt {
 
 		} catch (HibernateException e) {
 			HibDataSource.handleException(e);
-			throw new ApplicationException("Exception : Exception in getting Podcast by pk");
+			throw new ApplicationException("Exception : Exception in getting Podcast by pk" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -124,6 +124,7 @@ public class PodcastModelHibImpl implements PodcastModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting Podcast by Login " + e.getMessage());
 
 		} finally {
@@ -150,7 +151,8 @@ public class PodcastModelHibImpl implements PodcastModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  Podcast list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  Podcast list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -194,7 +196,8 @@ public class PodcastModelHibImpl implements PodcastModelInt {
 			}
 			list = (ArrayList<PodcastDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in podcast search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in podcast search" + e.getMessage());
 		} finally {
 			session.close();
 		}

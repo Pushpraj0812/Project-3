@@ -80,7 +80,7 @@ i.css {
 							<!--Body-->
 							<div>
 								<%
-									List l = (List) request.getAttribute("studenList");
+									List l = (List) request.getAttribute("studentList");
 								%>
 
 								<H4 align="center">

@@ -126,6 +126,7 @@ public class InsuranceModelHibImpl implements InsuranceModelInt {
 			}
 		} catch (HibernateException e) {
 			e.printStackTrace();
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting InsuranceDTO by Login " + e.getMessage());
 
 		} finally {
@@ -152,7 +153,8 @@ public class InsuranceModelHibImpl implements InsuranceModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception : Exception in  InsuranceDTO list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception : Exception in  InsuranceDTO list" + e.getMessage());
 		} finally {
 			session.close();
 		}
@@ -169,9 +171,9 @@ public class InsuranceModelHibImpl implements InsuranceModelInt {
 			session = HibDataSource.getSession();
 			Criteria criteria = session.createCriteria(InsuranceDTO.class);
 			if (dto != null) {
-				 if (dto.getId() != null && dto.getId() > 0) {
-		                criteria.add(Restrictions.eq("id", dto.getId()));
-		            }
+				if (dto.getId() != null && dto.getId() > 0) {
+					criteria.add(Restrictions.eq("id", dto.getId()));
+				}
 
 				if (dto.getPolicyNumber() != null && dto.getPolicyNumber().length() > 0) {
 					criteria.add(Restrictions.like("policyNumber", dto.getPolicyNumber() + "%"));
@@ -196,7 +198,8 @@ public class InsuranceModelHibImpl implements InsuranceModelInt {
 			}
 			list = (ArrayList<InsuranceDTO>) criteria.list();
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in user search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in Insurance search" + e.getMessage());
 		} finally {
 			session.close();
 		}

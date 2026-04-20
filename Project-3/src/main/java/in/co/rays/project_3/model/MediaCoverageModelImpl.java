@@ -38,7 +38,7 @@ public class MediaCoverageModelImpl implements MediaCoverageModelInt {
 			if (tx != null) {
 				tx.rollback();
 			}
-
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in MediaCoverage Add " + e.getMessage());
 
 		} finally {
@@ -120,8 +120,8 @@ public class MediaCoverageModelImpl implements MediaCoverageModelInt {
 			dto = (MediaCoverageDTO) session.get(MediaCoverageDTO.class, pk);
 
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception in getting MediaCoverage by PK");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in getting MediaCoverage by PK" + e.getMessage());
 
 		} finally {
 			session.close();
@@ -150,7 +150,7 @@ public class MediaCoverageModelImpl implements MediaCoverageModelInt {
 			}
 
 		} catch (HibernateException e) {
-
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting MediaCoverage by Name " + e.getMessage());
 
 		} finally {
@@ -180,8 +180,8 @@ public class MediaCoverageModelImpl implements MediaCoverageModelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception in MediaCoverage list");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in MediaCoverage list" + e.getMessage());
 
 		} finally {
 			session.close();
@@ -229,8 +229,8 @@ public class MediaCoverageModelImpl implements MediaCoverageModelInt {
 			list = (ArrayList<MediaCoverageDTO>) criteria.list();
 
 		} catch (HibernateException e) {
-
-			throw new ApplicationException("Exception in MediaCoverage search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in MediaCoverage search" + e.getMessage());
 
 		} finally {
 			session.close();

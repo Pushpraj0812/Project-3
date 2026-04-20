@@ -190,7 +190,7 @@ public class ProductModelHibImp implements ProductModelInt {
 				dto = (ProductDTO) list.get(0);
 			}
 		} catch (HibernateException e) {
-
+			HibDataSource.handleException(e);
 			throw new ApplicationException("Exception in getting product by Login " + e.getMessage());
 
 		} finally {

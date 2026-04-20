@@ -101,7 +101,8 @@ public class PolicyModelHibImpl implements PolicymodelInt {
 			dto = (PolicyDTO) session.get(PolicyDTO.class, pk);
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in getting Policy by PK");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in getting Policy by PK" + e.getMessage());
 
 		} finally {
 			session.close();
@@ -128,7 +129,8 @@ public class PolicyModelHibImpl implements PolicymodelInt {
 			}
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in getting Policy by Name");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in getting Policy by Name" + e.getMessage());
 
 		} finally {
 			session.close();
@@ -156,7 +158,8 @@ public class PolicyModelHibImpl implements PolicymodelInt {
 			list = criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in Policy List");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in Policy List" + e.getMessage());
 
 		} finally {
 			session.close();
@@ -203,7 +206,8 @@ public class PolicyModelHibImpl implements PolicymodelInt {
 			list = (ArrayList<PolicyDTO>) criteria.list();
 
 		} catch (HibernateException e) {
-			throw new ApplicationException("Exception in Policy Search");
+			HibDataSource.handleException(e);
+			throw new ApplicationException("Exception in Policy Search" + e.getMessage());
 
 		} finally {
 			session.close();
