@@ -217,6 +217,22 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css
 							href="<%=ORSView.PRODUCT_LIST_CTL%>"><i class="fa fa-paste"></i>Product
 							List</a>
 					</div></li>
+
+<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#" id="dispatchDropdown"
+					role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false"> <font style="color: white;">Dispatch</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="sessionDropdown">
+						<a class="dropdown-item" href="<%=ORSView.DISPATCH_CTL%>"> <i
+							class="fa fa-user-clock"></i> Add DISPATCH
+						</a> <a class="dropdown-item" href="<%=ORSView.DISPATCH_LIST_CTL%>">
+							<i class="fa fa-history"></i> DISPATCH List
+						</a>
+					</div></li>
+
+<!--  Links
 					
 					<li class="nav-item dropdown" style="padding-left: 5px"><a
 					class="nav-link dropdown-toggle" href="#"
@@ -234,22 +250,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css
 							class="fa fa-list"></i>Transformation List
 						</a>
 
-					</div></li>
-
-<!--  Links
-
-				<li class="nav-item dropdown" style="padding-left: 5px"><a
-					class="nav-link dropdown-toggle" href="#" id="dispatchDropdown"
-					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> <font style="color: white;">Dispatch</font>
-				</a>
-
-					<div class="dropdown-menu" aria-labelledby="sessionDropdown">
-						<a class="dropdown-item" href="<%=ORSView.DISPATCH_CTL%>"> <i
-							class="fa fa-user-clock"></i> Add DISPATCH
-						</a> <a class="dropdown-item" href="<%=ORSView.DISPATCH_LIST_CTL%>">
-							<i class="fa fa-history"></i> DISPATCH List
-						</a>
 					</div></li>
 
 				<li class="nav-item dropdown" style="padding-left: 5px"><a
