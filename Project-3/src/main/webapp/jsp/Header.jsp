@@ -219,6 +219,26 @@
 							href="<%=ORSView.PRODUCT_LIST_CTL%>"><i class="fa fa-paste"></i>Product
 							List</a>
 					</div></li>
+					
+					<li class="nav-item dropdown" style="padding-left: 5px"><a
+					class="nav-link dropdown-toggle" href="#"
+					id="TransformationDropdown" role="button" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false"> <font
+						style="color: white;">Transformation</font>
+				</a>
+
+					<div class="dropdown-menu" aria-labelledby="LabTestDropdown">
+
+						<a class="dropdown-item" href="<%=ORSView.TRANSFORMATION_CTL%>">
+							<i class="fa fa-truck"></i> Add Transformation
+						</a> <a class="dropdown-item"
+							href="<%=ORSView.TRANSFORMATION_LIST_CTL%>"> <i
+							class="fa fa-list"></i>Transformation List
+						</a>
+
+					</div></li>
+
+<!--  Links
 
 				<li class="nav-item dropdown" style="padding-left: 5px"><a
 					class="nav-link dropdown-toggle" href="#" id="dispatchDropdown"
@@ -362,7 +382,7 @@
 							<i class="fa fa-list"></i>Policy List
 						</a>
 
-					</div></li>
+					</div></li> -->
 
 				<%
 					}

@@ -29,6 +29,18 @@ public final class ModelFactory {
 		return mFactory;
 	}
 
+	public TransformationModelInt getTransformationModel() {
+
+		TransformationModelInt TransformationModel = (TransformationModelInt) modelCache.get("TransformationModel");
+		if (TransformationModel == null) {
+			if ("Hibernate".equals(DATABASE)) {
+				TransformationModel = new TransformationModelHibImpl();
+			}
+			modelCache.put("TransformationModel", TransformationModel);
+		}
+		return TransformationModel;
+	}
+
 	public PolicymodelInt getPolicyModel() {
 
 		PolicymodelInt PolicyModel = (PolicymodelInt) modelCache.get("PolicyModel");

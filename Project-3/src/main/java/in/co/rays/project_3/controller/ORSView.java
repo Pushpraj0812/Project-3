@@ -112,6 +112,10 @@ public interface ORSView {
 
 	public String POLICY_LIST_VIEW = PAGE_FOLDER + "/PolicyListView.jsp";
 
+	public String TRANSFORMATION_VIEW = PAGE_FOLDER + "/TransformationView.jsp";
+
+	public String TRANSFORMATION_LIST_VIEW = PAGE_FOLDER + "/TransformationListView.jsp";
+
 	// Controller Mapping
 
 	public String ERROR_CTL = APP_CONTEXT + "/ErrorCtl";
@@ -211,5 +215,9 @@ public interface ORSView {
 	public String POLICY_CTL = APP_CONTEXT + "//ctl/PolicyCtl";
 
 	public String POLICY_LIST_CTL = APP_CONTEXT + "/ctl/PolicyListCtl";
+
+	public String TRANSFORMATION_CTL = APP_CONTEXT + "//ctl/TransformationCtl";
+
+	public String TRANSFORMATION_LIST_CTL = APP_CONTEXT + "/ctl/TransformationListCtl";
 
 }

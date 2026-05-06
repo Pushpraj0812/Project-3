@@ -75,6 +75,8 @@
 		<mapping resource="in/co/rays/project_3/hbm/LabTest.hbm.xml" />
 		<mapping
 			resource="in/co/rays/project_3/hbm/MediaCoverageDTO.hbm.xml" />
+			<mapping
+			resource="in/co/rays/project_3/hbm/TransformationDTO.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

@@ -11,39 +11,37 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 
 import in.co.rays.project_3.dto.BaseDTO;
-import in.co.rays.project_3.dto.SessionDTO;
+import in.co.rays.project_3.dto.TransformationDTO;
 import in.co.rays.project_3.exception.ApplicationException;
 import in.co.rays.project_3.model.ModelFactory;
-import in.co.rays.project_3.model.SessionModelInt;
+import in.co.rays.project_3.model.TransformationModelInt;
 import in.co.rays.project_3.util.DataUtility;
 import in.co.rays.project_3.util.PropertyReader;
 import in.co.rays.project_3.util.ServletUtility;
 
-/**
- * Session List functionality controller.
- * Performs Search, List, Delete, Pagination
- *
- * @author Pushpraj
- */
-@WebServlet(name = "SessionListCtl", urlPatterns = { "/ctl/SessionListCtl" })
-public class SessionListCtl extends BaseCtl {
+@WebServlet(name = "TransformationListCtl", urlPatterns = { "/ctl/TransformationListCtl" })
 
-	private static Logger log = Logger.getLogger(SessionListCtl.class);
+public class TransformationListCtl extends BaseCtl {
+
+	private static Logger log = Logger.getLogger(TransformationListCtl.class);
 
 	@Override
 	protected BaseDTO populateDTO(HttpServletRequest request) {
 
-		log.debug("SessionListCtl populateDTO start");
+		log.debug("TransformationListCtl populateDTO start");
 
-		SessionDTO dto = new SessionDTO();
+		TransformationDTO dto = new TransformationDTO();
 
-		dto.setUserName(DataUtility.getString(request.getParameter("userName")));
-		dto.setSessionToken(DataUtility.getString(request.getParameter("sessionToken")));
-		dto.setSessionStatus(DataUtility.getString(request.getParameter("sessionStatus")));
+		dto.setTransformId(DataUtility.getLong(request.getParameter("transformId")));
+		dto.setTransformCode(DataUtility.getString(request.getParameter("transformCode")));
+		dto.setRuleName(DataUtility.getString(request.getParameter("ruleName")));
+		dto.setLogic(DataUtility.getString(request.getParameter("logic")));
+		dto.setStatus(DataUtility.getString(request.getParameter("status")));
 
 		populateBean(dto, request);
 
-		log.debug("SessionListCtl populateDTO end");
+		log.debug("TransformationListCtl populateDTO end");
+
 		return dto;
 	}
 
@@ -51,21 +49,26 @@ public class SessionListCtl extends BaseCtl {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("SessionListCtl doGet start");
+		log.debug("TransformationListCtl doGet start");
 
-		List list;
-		List next;
+		List list = null;
+		List next = null;
 
 		int pageNo = 1;
 		int pageSize = DataUtility.getInt(PropertyReader.getValue("page.size"));
 
-		SessionDTO dto = (SessionDTO) populateDTO(request);
-		SessionModelInt model = ModelFactory.getInstance().getSessionModel();
+		TransformationDTO dto = (TransformationDTO) populateDTO(request);
+
+		TransformationModelInt model = ModelFactory.getInstance().getTransformationModel();
 
 		try {
 
 			list = model.search(dto, pageNo, pageSize);
 			next = model.search(dto, pageNo + 1, pageSize);
+
+			System.out.println("Transformation List Size = " + list.size());
+
+			ServletUtility.setList(list, request);
 
 			if (list == null || list.size() == 0) {
 				ServletUtility.setErrorMessage("No record found", request);
@@ -77,7 +80,6 @@ public class SessionListCtl extends BaseCtl {
 				request.setAttribute("nextListSize", next.size());
 			}
 
-			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
@@ -86,14 +88,15 @@ public class SessionListCtl extends BaseCtl {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
 		}
-		log.debug("SessionListCtl doGet end");
+
+		log.debug("TransformationListCtl doGet end");
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		log.debug("SessionListCtl doPost start");
+		log.debug("TransformationListCtl doPost start");
 
 		List list = null;
 		List next = null;
@@ -102,65 +105,68 @@ public class SessionListCtl extends BaseCtl {
 		int pageSize = DataUtility.getInt(request.getParameter("pageSize"));
 
 		pageNo = (pageNo == 0) ? 1 : pageNo;
-		pageSize = (pageSize == 0)
-				? DataUtility.getInt(PropertyReader.getValue("page.size"))
-				: pageSize;
+		pageSize = (pageSize == 0) ? DataUtility.getInt(PropertyReader.getValue("page.size")) : pageSize;
 
-		SessionDTO dto = (SessionDTO) populateDTO(request);
+		TransformationDTO dto = (TransformationDTO) populateDTO(request);
+
 		String op = DataUtility.getString(request.getParameter("operation"));
 
 		String[] ids = request.getParameterValues("ids");
 
-		SessionModelInt model = ModelFactory.getInstance().getSessionModel();
+		TransformationModelInt model = ModelFactory.getInstance().getTransformationModel();
 
 		try {
 
-			if (OP_SEARCH.equalsIgnoreCase(op)) {
-				pageNo = 1;
+			if (OP_SEARCH.equalsIgnoreCase(op) || OP_NEXT.equalsIgnoreCase(op) || OP_PREVIOUS.equalsIgnoreCase(op)) {
 
-			} else if (OP_NEXT.equalsIgnoreCase(op)) {
-				pageNo++;
+				if (OP_SEARCH.equalsIgnoreCase(op)) {
+					pageNo = 1;
 
-			} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
-				pageNo--;
+				} else if (OP_NEXT.equalsIgnoreCase(op)) {
+					pageNo++;
+
+				} else if (OP_PREVIOUS.equalsIgnoreCase(op) && pageNo > 1) {
+					pageNo--;
+				}
 
 			} else if (OP_NEW.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.SESSION_CTL, request, response);
+
+				ServletUtility.redirect(ORSView.TRANSFORMATION_CTL, request, response);
 				return;
 
 			} else if (OP_RESET.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.SESSION_LIST_CTL, request, response);
+
+				ServletUtility.redirect(ORSView.TRANSFORMATION_LIST_CTL, request, response);
 				return;
 
 			} else if (OP_DELETE.equalsIgnoreCase(op)) {
 
 				if (ids != null && ids.length > 0) {
-					//pageNo = 1;
-					SessionDTO deletedto = new SessionDTO();
+
+					TransformationDTO deletedto = new TransformationDTO();
 
 					for (String id : ids) {
-						deletedto.setSessionId(DataUtility.getLong(id));
+
+						deletedto.setId(DataUtility.getLong(id));
 						model.delete(deletedto);
 					}
-					ServletUtility.setSuccessMessage("Session(s) deleted successfully", request);
+
+					ServletUtility.setSuccessMessage("Data Successfully Deleted!", request);
 
 				} else {
+
 					ServletUtility.setErrorMessage("Select at least one record", request);
 				}
-			}
-
-			if (OP_BACK.equalsIgnoreCase(op)) {
-				ServletUtility.redirect(ORSView.SESSION_LIST_CTL, request, response);
-				return;
 			}
 
 			list = model.search(dto, pageNo, pageSize);
 			next = model.search(dto, pageNo + 1, pageSize);
 
+			ServletUtility.setDto(dto, request);
+			ServletUtility.setList(list, request);
+
 			if (list == null || list.size() == 0) {
-				if (!OP_DELETE.equalsIgnoreCase(op)) {
-					ServletUtility.setErrorMessage("No record found", request);
-				}
+				ServletUtility.setErrorMessage("No record found", request);
 			}
 
 			if (next == null || next.size() == 0) {
@@ -169,7 +175,6 @@ public class SessionListCtl extends BaseCtl {
 				request.setAttribute("nextListSize", next.size());
 			}
 
-			ServletUtility.setList(list, request);
 			ServletUtility.setPageNo(pageNo, request);
 			ServletUtility.setPageSize(pageSize, request);
 			ServletUtility.forward(getView(), request, response);
@@ -178,11 +183,12 @@ public class SessionListCtl extends BaseCtl {
 			log.error(e);
 			ServletUtility.handleException(e, request, response);
 		}
-		log.debug("SessionListCtl doPost end");
+
+		log.debug("TransformationListCtl doPost end");
 	}
 
 	@Override
 	protected String getView() {
-		return ORSView.SESSION_LIST_VIEW;
+		return ORSView.TRANSFORMATION_LIST_VIEW;
 	}
 }

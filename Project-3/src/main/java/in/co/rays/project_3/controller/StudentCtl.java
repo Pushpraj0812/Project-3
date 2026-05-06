@@ -37,7 +37,7 @@ public class StudentCtl extends BaseCtl {
 	@Override
 	protected void preload(HttpServletRequest request) {
 
-		log.debug("RoleListCtl preload start");
+		log.debug("StudentCtl preload start");
 
 		CollegeModelInt model = ModelFactory.getInstance().getCollegeModel();
 		List l = null;
